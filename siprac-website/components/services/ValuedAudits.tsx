@@ -47,13 +47,13 @@ const ValuedAudits = () => {
                     {audits.map((audit, index) => (
                         <div
                             key={index}
-                            className="liquid-glass rounded-[2.5rem] p-10 flex flex-col group cursor-default border-white hover:-translate-y-2 transition-all duration-500"
+                            className="bg-[#FAF9F6] rounded-[2.5rem] p-10 flex flex-col group cursor-default shadow-[inset_10px_10px_20px_#d1cfcc,inset_-10px_-10px_20px_#ffffff]"
                         >
                             <div className="flex items-start justify-between mb-8">
-                                <div className={`p-4 bg-gray-50 rounded-2xl text-gray-800 shadow-sm border border-white group-hover:bg-orange-500 group-hover:text-white transition-all duration-500`}>
+                                <div className={`p-4 bg-[#FAF9F6] rounded-2xl text-orange-500 shadow-[inset_4px_4px_8px_#d1cfcc,inset_-4px_-4px_8px_#ffffff] border border-white/50 group-hover:text-orange-600 transition-colors duration-500`}>
                                     {audit.icon}
                                 </div>
-                                <div className="text-gray-200 group-hover:text-orange-500 transition-colors">
+                                <div className="text-orange-300 group-hover:text-orange-500 transition-colors">
                                     <ArrowUpRight className="size-6" />
                                 </div>
                             </div>
@@ -62,7 +62,7 @@ const ValuedAudits = () => {
                                 {audit.title}
                             </h3>
 
-                            <p className="text-gray-600 font-bold leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+                            <p className="text-gray-500 font-bold leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
                                 {audit.description}
                             </p>
                         </div>

@@ -61,10 +61,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  icons: {
-    icon: "/images/logo-siprac.jpg",
-    apple: "/images/logo-siprac.jpg",
-  },
 };
 
 export default function RootLayout({
@@ -75,7 +71,6 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${montserrat.variable} ${openSans.variable} `}>
       <head>
-        <link rel="icon" href="/images/logo-siprac.jpg" type="image/jpeg" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
       <body>

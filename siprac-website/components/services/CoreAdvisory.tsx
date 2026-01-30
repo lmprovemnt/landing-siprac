@@ -64,12 +64,12 @@ const CoreAdvisory = () => {
                                 0{index + 1}
                             </div>
 
-                            <div className="liquid-glass rounded-[3rem] p-12 border-white/40 hover:border-orange-200 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-100/50 cursor-default">
+                            <div className="bg-[#FAF9F6] rounded-[3rem] p-12 shadow-[inset_10px_10px_20px_#d1cfcc,inset_-10px_-10px_20px_#ffffff] transition-all duration-500 cursor-default">
                                 <div className="flex items-center gap-6 mb-8">
-                                    <div className="p-5 bg-white rounded-3xl text-black shadow-xl shadow-gray-100 group-hover:bg-orange-500 group-hover:text-white transition-all duration-500 transform group-hover:-rotate-6">
+                                    <div className="p-5 bg-[#FAF9F6] rounded-3xl text-orange-500 shadow-[inset_6px_6px_12px_#d1cfcc,inset_-6px_-6px_12px_#ffffff] border border-white/50 group-hover:text-orange-600 transition-colors duration-500">
                                         {service.icon}
                                     </div>
-                                    <div className={`h-px flex-1 bg-gradient-to-r from-gray-100 to-transparent`}></div>
+                                    <div className={`h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent`}></div>
                                 </div>
 
                                 <h3 className="text-2xl font-black text-black mb-6 tracking-tight uppercase leading-tight group-hover:text-orange-600 transition-colors">
@@ -81,7 +81,7 @@ const CoreAdvisory = () => {
                                 </p>
 
                                 <div className="mt-10 flex items-center gap-3">
-                                    <div className="w-10 h-0.5 bg-orange-500/20 group-hover:w-16 transition-all duration-500"></div>
+                                    <div className="w-10 h-1 bg-orange-500/20 group-hover:w-24 transition-all duration-500 rounded-full"></div>
                                     <span className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-500">
                                         Excelencia Operativa
                                     </span>

@@ -1,3 +1,45 @@
+"use client";
+
+import React, { useState, useEffect, useRef } from 'react';
+
+const AnimatedCounter = ({ target, duration = 1500 }: { target: string, duration?: number }) => {
+    const [count, setCount] = useState(0);
+    const countRef = useRef(0);
+    const targetNum = parseInt(target);
+    const suffix = target.replace(/[0-9]/g, '');
+
+    useEffect(() => {
+        let startTime: number | null = null;
+
+        const animate = (timestamp: number) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+
+            // Ease out quad function for smoother deceleration
+            const easeProgress = 1 - (1 - progress) * (1 - progress);
+
+            const currentCount = Math.floor(easeProgress * targetNum);
+
+            if (currentCount !== countRef.current) {
+                countRef.current = currentCount;
+                setCount(currentCount);
+            }
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            }
+        };
+
+        requestAnimationFrame(animate);
+    }, [targetNum, duration]);
+
+    return (
+        <>
+            {count}{suffix}
+        </>
+    );
+};
+
 const Hero = () => {
     const stats = [
         { number: '100+', label: 'Proyectos Completados' },
@@ -45,8 +87,8 @@ const Hero = () => {
                     <div className="flex flex-wrap justify-center gap-12 md:gap-32">
                         {stats.map((stat, index) => (
                             <div key={index} className="text-center group">
-                                <div className="text-5xl md:text-7xl font-black text-[#D1D1D1]/30 mb-2 group-hover:text-orange-500/20 transition-colors duration-500">
-                                    {stat.number}
+                                <div className="text-5xl md:text-7xl font-black text-[#D1D1D1]/30 mb-2 group-hover:text-orange-500/20 transition-colors duration-500 min-w-[120px]">
+                                    <AnimatedCounter target={stat.number} />
                                 </div>
                                 <div className="text-[10px] md:text-xs text-gray-500 uppercase tracking-[0.2em] font-black">
                                     {stat.label}
@@ -60,4 +102,4 @@ const Hero = () => {
     )
 }
 
-export default Hero
+export default Hero;

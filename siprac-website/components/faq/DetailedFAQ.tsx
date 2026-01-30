@@ -44,34 +44,34 @@ const faqs = [
 
 const DetailedFAQ = () => {
     return (
-        <section className="py-24 bg-white relative overflow-hidden">
+        <section className="py-24 bg-[#FAF9F6] relative overflow-hidden">
             <div className="container mx-auto px-4 max-w-4xl relative z-10">
-                <Accordion type="single" collapsible className="w-full space-y-6">
+                <Accordion type="single" collapsible className="w-full space-y-8">
                     {faqs.map((faq, index) => (
                         <AccordionItem
                             key={index}
                             value={`item-${index}`}
-                            className="liquid-glass border border-white/40 rounded-[2rem] px-8 bg-[#FAF9F6]/50 hover:bg-white transition-all duration-500 overflow-hidden group shadow-sm hover:shadow-xl hover:-translate-y-1"
+                            className="bg-[#FAF9F6] border-none rounded-[2.5rem] px-10 shadow-[inset_12px_12px_24px_#d1cfcc,inset_-12px_-12px_24px_#ffffff] transition-colors duration-300 overflow-hidden group"
                         >
-                            <AccordionTrigger className="hover:no-underline py-8 group/trigger">
-                                <div className="flex items-center gap-6 text-left w-full">
-                                    <div className="p-3 bg-white rounded-2xl text-orange-500 shadow-sm border border-orange-100 group-hover/trigger:bg-orange-500 group-hover/trigger:text-white transition-all duration-500 transform group-hover/trigger:rotate-12">
+                            <AccordionTrigger className="hover:no-underline py-10 group/trigger">
+                                <div className="flex items-center gap-8 text-left w-full">
+                                    <div className="shrink-0 w-14 h-14 bg-[#FAF9F6] rounded-2xl flex items-center justify-center text-orange-500 shadow-[inset_6px_6px_12px_#d1cfcc,inset_-6px_-6px_12px_#ffffff] border border-white/10 group-hover/trigger:text-orange-600 transition-colors duration-300">
                                         {faq.icon}
                                     </div>
-                                    <div className="flex flex-col gap-1">
-                                        <span className="text-[10px] font-black uppercase tracking-widest text-orange-500/60 group-hover/trigger:text-orange-600">
+                                    <div className="flex flex-col gap-2">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-500/60 group-hover/trigger:text-orange-600 transition-colors duration-300">
                                             {faq.category}
                                         </span>
-                                        <h3 className="text-lg md:text-xl font-black text-black tracking-tight leading-tight">
+                                        <h3 className="text-xl md:text-2xl font-black text-black tracking-tight leading-tight uppercase">
                                             {faq.question}
                                         </h3>
                                     </div>
                                 </div>
                             </AccordionTrigger>
-                            <AccordionContent className="pb-8">
-                                <div className="pl-[4.5rem] pr-4">
-                                    <div className="w-12 h-1 bg-orange-100 mb-6 rounded-full group-hover:w-20 transition-all duration-500"></div>
-                                    <p className="text-gray-500 font-medium leading-relaxed text-base mb-8">
+                            <AccordionContent className="pb-10">
+                                <div className="pl-22 pr-4">
+                                    <div className="w-16 h-1 bg-orange-200 mb-8 rounded-full"></div>
+                                    <p className="text-gray-500 font-bold leading-relaxed text-base mb-10 opacity-80 uppercase tracking-wide">
                                         {faq.answer}
                                     </p>
 
@@ -79,9 +79,9 @@ const DetailedFAQ = () => {
                                         href={`https://wa.me/573116300848?text=${encodeURIComponent(`Hola SIPRAC, tengo una duda sobre: ${faq.question}`)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-5 py-3 bg-orange-50 text-orange-500 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-sm"
+                                        className="inline-flex items-center gap-3 px-6 py-4 bg-[#FAF9F6] text-orange-500 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-[inset_4px_4px_8px_#d1cfcc,inset_-4px_-4px_8px_#ffffff] hover:text-orange-600 transition-all duration-300"
                                     >
-                                        Consúltanos por WhatsApp <ArrowRight className="size-3" />
+                                        Consúltanos por WhatsApp <ArrowRight className="size-4" />
                                     </a>
                                 </div>
                             </AccordionContent>
