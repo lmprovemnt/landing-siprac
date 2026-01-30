@@ -40,17 +40,20 @@ const Hero = () => {
                 </div>
 
                 {/* Stats */}
-                <div className="flex flex-wrap justify-center gap-12 md:gap-32 mt-24">
-                    {stats.map((stat, index) => (
-                        <div key={index} className="text-center">
-                            <div className="text-5xl md:text-6xl font-extrabold text-[#D1D1D1]/30 mb-2">
-                                {stat.number}
+                <div className="mt-24 border-t border-gray-100 pt-16">
+                    <p className="text-center text-orange-500 text-xs font-black uppercase tracking-[0.3em] mb-12">Nuestra Trayectoria</p>
+                    <div className="flex flex-wrap justify-center gap-12 md:gap-32">
+                        {stats.map((stat, index) => (
+                            <div key={index} className="text-center group">
+                                <div className="text-5xl md:text-7xl font-black text-[#D1D1D1]/30 mb-2 group-hover:text-orange-500/20 transition-colors duration-500">
+                                    {stat.number}
+                                </div>
+                                <div className="text-[10px] md:text-xs text-gray-500 uppercase tracking-[0.2em] font-black">
+                                    {stat.label}
+                                </div>
                             </div>
-                            <div className="text-[10px] md:text-xs text-gray-400 uppercase tracking-[0.2em] font-bold">
-                                {stat.label}
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

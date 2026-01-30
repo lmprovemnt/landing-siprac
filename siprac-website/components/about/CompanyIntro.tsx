@@ -25,9 +25,17 @@ const CompanyIntro = () => {
                         </div>
                     </div>
                     <div className="lg:w-1/2 w-full">
-                        <div className="aspect-[4/3] bg-[#FAF9F6] rounded-2xl border-2 border-dashed border-orange-200 flex items-center justify-center group hover:border-orange-500 transition-colors duration-500">
-                            <div className="w-24 h-24 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-500 text-4xl group-hover:scale-110 transition-transform duration-500 shadow-sm">
-                                <i className="fas fa-building"></i>
+                        <div className="aspect-[4/3] relative rounded-3xl overflow-hidden shadow-2xl group">
+                            <img
+                                src="/images/about/nuestra-empresa.jpg"
+                                alt="Siprac Oficina"
+                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                            <div className="absolute bottom-8 left-8">
+                                <div className="bg-orange-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg">
+                                    Nuestras Instalaciones
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Montserrat, Open_Sans } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/ui/Header'
-import Footer from '@/components/ui/Footer'
+import Header from '@/components/shared/Header'
+import Footer from '@/components/shared/Footer'
 import WhatsappButton from '@/components/shared/WhatsappButton'
 
 const montserrat = Montserrat({
@@ -18,10 +18,54 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'SIPRAC | Servicios Integrales en Prevención de Riesgos',
-  description: 'SIPRAC - Servicio Integral en Prevención de Riesgos Laborales, Medio Ambiente y Calidad. Consultoría especializada en Sistemas de Gestión Integrados.',
-  keywords: 'SIPRAC, prevención de riesgos, gestión ambiental, SST, consultoría, ISO 9001, seguridad laboral'
-}
+  title: "SIPRAC | Servicios Integrales en Prevención de Riesgos",
+  description:
+    "Consultoría experta en SST, Medio Ambiente y Calidad. Implementamos sistemas de gestión integrados que transforman el cumplimiento normativo en excelencia operativa.",
+  keywords: [
+    "SST",
+    "prevención de riesgos",
+    "gestión ambiental",
+    "ISO 9001",
+    "consultoría HSEQ",
+    "RUC",
+    "PESV",
+    "seguridad vial",
+    "Sistemas de Gestión Integrados",
+  ],
+  authors: [{ name: "SIPRAC" }],
+  openGraph: {
+    title: "SIPRAC - Expertos en Prevención de Riesgos y Gestión Integral",
+    description:
+      "Consultoría especializada en la implementación, auditoría y mejora de sistemas de gestión normativos.",
+    url: "https://siprac.com",
+    siteName: "SIPRAC",
+    locale: "es_ES",
+    type: "website",
+    images: [
+      {
+        url: "/images/logo-siprac.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SIPRAC - Gestión Integral",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SIPRAC - Prevención de Riesgos y Gestión Integral",
+    description:
+      "Transformamos el cumplimiento normativo en ventaja competitiva para su organización.",
+    images: ["/images/logo-siprac.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: "/images/logo-siprac.jpg",
+    apple: "/images/logo-siprac.jpg",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -31,7 +75,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${montserrat.variable} ${openSans.variable} `}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/logo-siprac.jpg" type="image/jpeg" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
       <body>
