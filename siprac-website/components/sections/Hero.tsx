@@ -8,34 +8,31 @@ const Hero = () => {
     return (
         <section
             id="inicio"
-            className="pt-32 pb-16 md:pt-40 md:pb-24 bg-gradient-to-br from-orange-50 to-yellow-50"
+            className="pt-32 pb-16 md:pt-48 md:pb-24 bg-[#FAF9F6]"
         >
             <div className="container mx-auto px-4">
-                <div className="max-w-4xl mx-auto text-center mb-12">
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                        SERVICIO INTEGRAL EN{' '}
-                        <span className="text-primary-orange relative">
-                            PREVENCIÓN DE RIESGOS
-                            <span className="absolute bottom-2 left-0 w-full h-3 bg-yellow-200 opacity-60 -z-10"></span>
-                        </span>{' '}
+                <div className="max-w-5xl mx-auto text-center mb-16">
+                    <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold mb-8 tracking-tight text-black leading-tight">
+                        SERVICIO INTEGRAL EN <br className="hidden md:block" />
+                        <span className="text-orange-500">PREVENCIÓN DE RIESGOS</span> <br className="hidden md:block" />
                         LABORALES, MEDIO AMBIENTE Y CALIDAD
                     </h1>
 
-                    <p className="text-lg md:text-xl text-gray-600 mb-8">
+                    <p className="text-lg md:text-xl text-gray-500 mb-12 max-w-3xl mx-auto font-medium">
                         Especialistas en Sistemas de Gestión Integrados (SGI) con enfoque en mejora continua
                         y cumplimiento normativo para su organización.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                         <a
                             href="#servicios"
-                            className="btn bg-primary-orange text-white px-8 py-3 rounded hover:bg-transparent hover:text-primary-orange hover:border-2 hover:border-primary-orange transition-all"
+                            className="text-black font-bold hover:text-orange-500 transition-colors"
                         >
                             Nuestros Servicios
                         </a>
                         <a
                             href="/contact"
-                            className="btn bg-transparent text-primary-orange border-2 border-primary-orange px-8 py-3 rounded hover:bg-primary-orange hover:text-white transition-all"
+                            className="bg-white border-2 border-orange-500 text-orange-500 px-10 py-4 rounded-xl font-bold hover:bg-orange-500 hover:text-white transition-all shadow-lg hover:shadow-orange-200"
                         >
                             Contactar Ahora
                         </a>
@@ -43,13 +40,13 @@ const Hero = () => {
                 </div>
 
                 {/* Stats */}
-                <div className="flex flex-wrap justify-center gap-8 md:gap-16 mt-16">
+                <div className="flex flex-wrap justify-center gap-12 md:gap-32 mt-24">
                     {stats.map((stat, index) => (
                         <div key={index} className="text-center">
-                            <div className="text-4xl md:text-5xl font-bold text-primary-orange mb-2">
+                            <div className="text-5xl md:text-6xl font-extrabold text-[#D1D1D1]/30 mb-2">
                                 {stat.number}
                             </div>
-                            <div className="text-sm md:text-base text-gray-600 uppercase tracking-wider">
+                            <div className="text-[10px] md:text-xs text-gray-400 uppercase tracking-[0.2em] font-bold">
                                 {stat.label}
                             </div>
                         </div>

@@ -1,17 +1,18 @@
-export default function AboutHero() {
+const AboutHero = () => {
     return (
-        <div className="relative bg-gray-900 overflow-hidden">
-            <div className="absolute inset-0">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-indigo-900 mix-blend-multiply" />
-            </div>
-            <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
-                <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl text-center">
+        <section className="pt-32 pb-20 bg-gradient-to-b from-orange-50/50 to-white text-center">
+            <div className="container mx-auto px-4">
+                <h1 className="text-5xl md:text-7xl font-extrabold text-orange-500 mb-8 tracking-tight">
                     Quiénes Somos
                 </h1>
-                <p className="mt-6 text-xl text-indigo-100 max-w-3xl mx-auto text-center">
-                    Expertos en Sistemas de Gestión Integrados
+                <p className="max-w-3xl mx-auto text-lg md:text-xl text-gray-500 font-medium leading-relaxed">
+                    Especialistas en Sistemas de Gestión Integrados con enfoque en mejora
+                    continua y cumplimiento normativo
                 </p>
+                <div className="w-24 h-1.5 bg-orange-500 mx-auto mt-12 rounded-full opacity-20"></div>
             </div>
-        </div>
+        </section>
     );
-}
+};
+
+export default AboutHero;
