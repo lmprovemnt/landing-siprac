@@ -1,50 +1,60 @@
-import { Handshake, Award, ShieldCheck, Lightbulb, Leaf } from "lucide-react";
-
 const values = [
     {
-        name: "Compromiso",
+        title: "Compromiso",
         description: "Trabajamos con responsabilidad y dedicación para cumplir con las expectativas de nuestros clientes.",
-        icon: Handshake
+        icon: "fa-hands-helping"
     },
     {
-        name: "Excelencia",
+        title: "Excelencia",
         description: "Buscamos la mejora continua en todos nuestros servicios para garantizar la calidad.",
-        icon: Award
+        icon: "fa-award"
     },
     {
-        name: "Integridad",
+        title: "Integridad",
         description: "Actuamos con transparencia, ética y respeto en todas nuestras actividades.",
-        icon: ShieldCheck
+        icon: "fa-balance-scale",
+        highlight: true
     },
     {
-        name: "Innovación",
+        title: "Innovación",
         description: "Aplicamos soluciones innovadoras y tecnológicas en nuestros procesos de consultoría.",
-        icon: Lightbulb
-    },
-    {
-        name: "Sostenibilidad",
-        description: "Promovemos la gestión responsable de los recursos y el desarrollo sostenible.",
-        icon: Leaf
+        icon: "fa-lightbulb"
     }
-];
+]
 
-export default function CorporateValues() {
+const CorporateValues = () => {
     return (
-        <section className="py-16 bg-gray-900 text-white">
+        <section className="py-24 bg-[#FAF9F6]">
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-12">Valores Corporativos</h2>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {values.map((value) => (
-                        <div key={value.name} className="bg-gray-800 p-6 rounded-xl hover:bg-gray-750 transition-colors">
-                            <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
-                                <value.icon className="w-6 h-6 text-white" />
+                <div className="text-center mb-20">
+                    <h2 className="text-5xl font-extrabold text-orange-500 mb-4 tracking-tighter">Valores Corporativos</h2>
+                    <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">Principios que guían nuestro trabajo</p>
+                    <div className="w-16 h-1 bg-orange-500 mx-auto mt-6"></div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                    {values.map((value, index) => (
+                        <div
+                            key={index}
+                            className={`rounded-3xl p-10 text-center transition-all duration-500 group cursor-default h-full flex flex-col items-center ${value.highlight
+                                    ? 'bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-2xl scale-105 border-none'
+                                    : 'bg-white text-gray-500 shadow-sm hover:shadow-xl hover:-translate-y-2'
+                                }`}
+                        >
+                            <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500 ${value.highlight ? 'bg-white/20' : 'bg-orange-50'
+                                }`}>
+                                <i className={`fas ${value.icon} text-3xl ${value.highlight ? 'text-white' : 'text-orange-500'}`}></i>
                             </div>
-                            <h3 className="text-xl font-bold mb-3">{value.name}</h3>
-                            <p className="text-gray-300">{value.description}</p>
+                            <h3 className={`text-2xl font-black mb-6 ${value.highlight ? 'text-white' : 'text-black'}`}>{value.title}</h3>
+                            <p className={`text-sm font-bold leading-relaxed ${value.highlight ? 'text-white/90' : 'text-gray-400'}`}>
+                                {value.description}
+                            </p>
                         </div>
                     ))}
                 </div>
             </div>
         </section>
     );
-}
+};
+
+export default CorporateValues;

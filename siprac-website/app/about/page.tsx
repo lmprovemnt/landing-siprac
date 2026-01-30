@@ -1,10 +1,9 @@
 import AboutHero from "@/components/about/AboutHero";
 import CompanyIntro from "@/components/about/CompanyIntro";
-import CorporateObjectives from "@/components/about/CorporateObjectives";
-import CorporateValues from "@/components/about/CorporateValues";
 import MissionVision from "@/components/about/MissionVision";
 import Team from "@/components/about/Team";
-import AboutCTA from "@/components/about/AboutCTA";
+import CorporateValues from "@/components/about/CorporateValues";
+import CTA from "@/components/sections/CTA";
 
 export default function AboutPage() {
     return (
@@ -14,8 +13,7 @@ export default function AboutPage() {
             <MissionVision />
             <Team />
             <CorporateValues />
-            <CorporateObjectives />
-            <AboutCTA />
+            <CTA />
         </div>
     );
 }
