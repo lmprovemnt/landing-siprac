@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+}
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #ffffff;
+        --foreground: #171717;
+    }
+}
+
+/* Force light mode for now to match design or keep dark if preferred. 
+   The design looks light. The screenshot showed dark mode which broke the Header.
+   I will set dark mode vars to same as light to force light theme for consistency with the design,
+   OR I should make Header support dark mode. 
+   Reference URL is likely light mode.
+   Let's force light mode vars for now to be safe, or just ensure Header has bg-white text-black etc.
+   Header is bg-white/80. 
+   If body is black, it looks weird.
+   Let's set dark mode background to white as well to match the "Landing Page" feel which is usually light.
+*/
+
+body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+}
