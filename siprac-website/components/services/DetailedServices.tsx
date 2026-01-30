@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import { CheckCircle2, Shield, Leaf, Award, Search, FileText, Settings, ArrowRight } from 'lucide-react'
 
 const serviceDetails = [
@@ -16,6 +17,7 @@ const serviceDetails = [
             'Planes de emergencias y formación de brigadas',
             'Mediciones higiénicas y ergonomía'
         ],
+        image: '/images/services/sst.png',
         color: 'orange'
     },
     {
@@ -30,6 +32,7 @@ const serviceDetails = [
             'Programas de uso eficiente de recursos',
             'Asesoría en producción más limpia'
         ],
+        image: '/images/services/environmental.png',
         color: 'green'
     },
     {
@@ -44,6 +47,7 @@ const serviceDetails = [
             'Indicadores de gestión y KPI\'s',
             'Estandarización de servicios'
         ],
+        image: '/images/services/quality.png',
         color: 'blue'
     },
     {
@@ -58,6 +62,7 @@ const serviceDetails = [
             'Seguimiento a planes de acción',
             'Informes técnicos de diagnóstico'
         ],
+        image: '/images/services/audits.png',
         color: 'purple'
     },
     {
@@ -72,6 +77,7 @@ const serviceDetails = [
             'Gestión documental especializada',
             'Mantenimiento continuo del sistema'
         ],
+        image: '/images/services/ruc.png',
         color: 'red'
     },
     {
@@ -86,6 +92,7 @@ const serviceDetails = [
             'Optimización de recursos administrativos',
             'Visión holística del riesgo'
         ],
+        image: '/images/services/hseq.png',
         color: 'amber'
     }
 ]
@@ -134,23 +141,22 @@ const DetailedServices = () => {
                                 </div>
                             </div>
 
-                            {/* Decorative Image/Box Placeholder */}
+                            {/* Image Box */}
                             <div className="flex-1 w-full">
-                                <div className="relative aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl group">
-                                    <div className={`absolute inset-0 bg-gradient-to-br from-gray-100 to-white flex items-center justify-center`}>
-                                        {/* Using an icon as a large watermark placeholder */}
-                                        <div className="opacity-5 scale-[3] group-hover:scale-[3.5] group-hover:rotate-6 transition-all duration-700">
-                                            {service.icon}
-                                        </div>
-                                        <div className="relative z-10 text-center p-8">
-                                            <div className="text-gray-300 text-6xl font-black mb-2 italic">SIPRAC</div>
-                                            <div className="text-gray-200 text-sm font-bold uppercase tracking-[1em]">Excellence</div>
-                                        </div>
-                                    </div>
+                                <div className="relative aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl group border-4 border-white">
+                                    <Image 
+                                        src={service.image} 
+                                        alt={service.title}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                    {/* Overlay Gradient */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                                    
                                     {/* Floating badge */}
-                                    <div className="absolute top-8 right-8 bg-black/80 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10">
+                                    <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-md px-6 py-4 rounded-2xl border border-white shadow-lg">
                                         <div className="text-orange-500 font-black text-xl leading-none">0{index + 1}</div>
-                                        <div className="text-white/50 text-[10px] font-bold uppercase tracking-widest mt-1">Sección</div>
+                                        <div className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-1">Sección</div>
                                     </div>
                                 </div>
                             </div>

@@ -32,29 +32,31 @@ export default function FAQ() {
     ];
 
     return (
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-[#FAF9F6]">
             <div className="container mx-auto px-4 max-w-4xl text-center">
                 <div className="mb-16">
-                    <h2 className="text-4xl font-black text-black mb-3">Preguntas Frecuentes</h2>
-                    <p className="text-gray-500 text-sm font-bold uppercase tracking-widest opacity-60">Resolvemos tus dudas principales</p>
+                    <h2 className="text-4xl font-black text-black mb-3 tracking-tight uppercase">Preguntas Frecuentes</h2>
+                    <p className="text-gray-500 text-xs font-bold uppercase tracking-widest opacity-60">Resolvemos tus dudas principales</p>
                     <div className="w-16 h-1 bg-orange-500 mx-auto mt-6 rounded-full"></div>
                 </div>
 
                 <div className="text-left">
-                    <Accordion type="single" collapsible className="w-full space-y-4">
+                    <Accordion type="single" collapsible className="w-full space-y-6">
                         {faqs.map((faq, idx) => (
                             <AccordionItem
                                 key={idx}
                                 value={`item-${idx}`}
-                                className="border border-gray-100 rounded-3xl px-8 bg-[#FAF9F6]/50 hover:bg-white transition-colors overflow-hidden"
+                                className="border-none rounded-[2rem] px-8 bg-[#FAF9F6] shadow-[inset_10px_10px_20px_#d1cfcc,inset_-10px_-10px_20px_#ffffff] transition-colors duration-300 overflow-hidden group"
                             >
-                                <AccordionTrigger className="hover:no-underline py-6">
-                                    <span className="font-black text-black text-sm md:text-base text-left pr-4">
+                                <AccordionTrigger className="hover:no-underline py-7 transition-colors duration-300 group-hover:text-orange-600">
+                                    <span className="font-black text-sm md:text-base text-left pr-4 uppercase tracking-tight">
                                         {faq.question}
                                     </span>
                                 </AccordionTrigger>
-                                <AccordionContent className="text-sm text-gray-500 font-medium leading-relaxed pb-8">
-                                    {faq.answer}
+                                <AccordionContent className="text-sm text-gray-500 font-bold leading-relaxed pb-8 opacity-80">
+                                    <div className="pt-2 border-t border-black/5">
+                                        {faq.answer}
+                                    </div>
                                 </AccordionContent>
                             </AccordionItem>
                         ))}
