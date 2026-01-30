@@ -1,49 +1,64 @@
 "use client";
-import { useState } from "react";
+
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function FAQ() {
     const faqs = [
         {
-            question: "¿Cuál es el tiempo de respuesta para consultas?",
-            answer: "Nuestro equipo se compromete a responder todas las consultas en un plazo máximo de 24 horas hábiles."
+            question: "¿SIPRAC emite certificaciones ISO?",
+            answer: "No, somos consultores expertos. Preparamos y auditamos su sistema para que cumpla con todos los requisitos necesarios para obtener la certificación ante un ente oficial."
         },
         {
-            question: "¿Ofrecen servicios virtuales?",
-            answer: "Sí, contamos con una plataforma robusta para asesorías, auditorías y capacitaciones en modalidad 100% virtual para todo el país."
+            question: "¿Cuánto tiempo toma implementar un sistema de gestión?",
+            answer: "El tiempo varía según el tamaño y la complejidad de la organización, estimando un periodo de entre 6 meses y 1 año."
         },
         {
-            question: "¿Cuál es el costo de una consultoría inicial?",
-            answer: "La primera sesión de diagnóstico y acercamiento no tiene costo. Basado en ella, elaboramos una propuesta técnica y económica a la medida."
+            question: "¿Qué incluyen sus servicios de auditoría?",
+            answer: "Evaluamos a fondo sus procesos, identificamos brechas de cumplimiento y entregamos un plan de acción detallado para la mejora funcional del sistema."
+        },
+        {
+            question: "¿Es necesario tener conocimiento previo en normas para contratarlos?",
+            answer: "No. Nosotros diseñamos el sistema desde cero, adaptándolo 100% a la realidad y operación actual de su negocio; al igual que orientando al cumplimiento solicitado por ministerio de trabajo."
+        },
+        {
+            question: "¿Brindan soporte después de la implementación?",
+            answer: "Sí, ofrecemos servicios de mantenimiento y auditorías internas periódicas para asegurar que el sistema evolucione y se mantenga eficiente."
         }
     ];
 
-    const [openIdx, setOpenIdx] = useState<number | null>(null);
-
     return (
-        <section className="py-24">
-            <div className="container mx-auto px-4 max-w-4xl">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold text-black mb-2">Preguntas Frecuentes</h2>
-                    <div className="w-16 h-1 bg-orange-500 mx-auto mt-6"></div>
+        <section className="py-24 bg-white">
+            <div className="container mx-auto px-4 max-w-4xl text-center">
+                <div className="mb-16">
+                    <h2 className="text-4xl font-black text-black mb-3">Preguntas Frecuentes</h2>
+                    <p className="text-gray-500 text-sm font-bold uppercase tracking-widest opacity-60">Resolvemos tus dudas principales</p>
+                    <div className="w-16 h-1 bg-orange-500 mx-auto mt-6 rounded-full"></div>
                 </div>
 
-                <div className="space-y-4">
-                    {faqs.map((faq, idx) => (
-                        <div key={idx} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                            <button
-                                onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-                                className="w-full px-8 py-6 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
+                <div className="text-left">
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqs.map((faq, idx) => (
+                            <AccordionItem
+                                key={idx}
+                                value={`item-${idx}`}
+                                className="border border-gray-100 rounded-3xl px-8 bg-[#FAF9F6]/50 hover:bg-white transition-colors overflow-hidden"
                             >
-                                <span className="font-bold text-black text-sm md:text-base">{faq.question}</span>
-                                <i className={`fas fa-chevron-down text-orange-500 transition-transform duration-300 ${openIdx === idx ? 'rotate-180' : ''}`}></i>
-                            </button>
-                            <div className={`transition-all duration-300 ease-in-out ${openIdx === idx ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                <div className="px-8 pb-6 text-sm text-gray-600 leading-relaxed">
+                                <AccordionTrigger className="hover:no-underline py-6">
+                                    <span className="font-black text-black text-sm md:text-base text-left pr-4">
+                                        {faq.question}
+                                    </span>
+                                </AccordionTrigger>
+                                <AccordionContent className="text-sm text-gray-500 font-medium leading-relaxed pb-8">
                                     {faq.answer}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
                 </div>
             </div>
         </section>

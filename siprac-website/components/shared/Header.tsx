@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Button from "./Button";
+import { Button } from "../ui/Button";
 
 export default function Header() {
     const [isVisible, setIsVisible] = useState(true);
@@ -28,8 +28,8 @@ export default function Header() {
     const navLinks = [
         { name: "Inicio", href: "/" },
         { name: "Quiénes Somos", href: "/about" },
-        { name: "Servicios", href: "/#servicios" },
-        { name: "Clientes", href: "/#clientes" },
+        { name: "Servicios", href: "/services" },
+        { name: "Preguntas", href: "/faq" },
         { name: "Contacto", href: "/contact" },
     ];
 
@@ -56,7 +56,7 @@ export default function Header() {
                 </Link>
                 <nav className="hidden md:flex gap-8 items-center">
                     {navLinks.map((link) => {
-                        const isActive = pathname === link.href || (link.href.startsWith('/#') && pathname === '/');
+                        const isActive = pathname === link.href;
                         return (
                             <Link
                                 key={link.name}
@@ -69,8 +69,10 @@ export default function Header() {
                     })}
                 </nav>
                 <div className="flex items-center gap-4">
-                    <Button href="/contact" variant="primary">
-                        Solicitar Asesoría
+                    <Button asChild>
+                        <Link href="/contact">
+                            Solicitar Asesoría
+                        </Link>
                     </Button>
                 </div>
             </div>

@@ -26,6 +26,7 @@ export default function Footer() {
                             <li><Link href="/" className="text-gray-400 hover:text-orange-500 transition-colors">Inicio</Link></li>
                             <li><Link href="/about" className="text-gray-400 hover:text-orange-500 transition-colors">Quiénes Somos</Link></li>
                             <li><Link href="/services" className="text-gray-400 hover:text-orange-500 transition-colors">Servicios</Link></li>
+                            <li><Link href="/faq" className="text-gray-400 hover:text-orange-500 transition-colors">Preguntas Frecuentes</Link></li>
                             <li><Link href="/contact" className="text-gray-400 hover:text-orange-500 transition-colors">Contacto</Link></li>
                         </ul>
                     </div>

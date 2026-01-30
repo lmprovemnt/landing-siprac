@@ -1,96 +1,236 @@
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue
+} from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { User, Building, Phone, Mail, List, Settings, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { sendDiagnosticEmail } from "@/app/actions/send-email";
+
 export default function ContactForm() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState("");
+
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setIsSubmitting(true);
+        setStatus('idle');
+
+        const formData = new FormData(event.currentTarget);
+        const result = await sendDiagnosticEmail(formData);
+
+        setIsSubmitting(false);
+        if (result.success) {
+            setStatus('success');
+            (event.target as HTMLFormElement).reset();
+        } else {
+            setStatus('error');
+            setErrorMessage(result.error || "Ocurrió un error al enviar el diagnóstico.");
+        }
+    }
+
+    if (status === 'success') {
+        return (
+            <section className="py-20 bg-transparent text-center">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-xl mx-auto bg-white rounded-[2.5rem] shadow-2xl p-16 border border-gray-50 flex flex-col items-center">
+                        <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center text-green-500 mb-8 animate-bounce">
+                            <CheckCircle2 className="size-10" />
+                        </div>
+                        <h2 className="text-3xl font-black text-black mb-4 uppercase">¡Diagnóstico Enviado!</h2>
+                        <p className="text-gray-500 font-bold leading-relaxed mb-8">
+                            Hemos recibido su información correctamente. Un consultor experto de SIPRAC
+                            revisará su perfil y se pondrá en contacto en menos de 24 horas.
+                        </p>
+                        <Button onClick={() => setStatus('idle')} className="rounded-full px-12">
+                            Enviar otro diagnóstico
+                        </Button>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section className="py-20 bg-transparent">
-            <div className="container mx-auto px-4 text-center">
-                <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-10 md:p-16">
-                    <h2 className="text-3xl font-bold text-black mb-2">Envíenos un Mensaje</h2>
-                    <p className="text-gray-500 mb-12 text-sm font-medium">Complete el formulario y nos pondremos en contacto con usted</p>
+            <div className="container mx-auto px-4">
+                <div className="max-w-4xl mx-auto bg-white rounded-[2.5rem] shadow-2xl p-8 md:p-16 border border-gray-50">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-5xl font-black text-black mb-4 tracking-tight uppercase">Diagnóstico Preliminar</h2>
+                        <p className="text-gray-500 text-sm font-bold uppercase tracking-[0.2em] opacity-70">
+                            Complete los detalles operativos para una asesoría personalizada
+                        </p>
+                    </div>
 
-                    <h3 className="text-xl font-bold text-black mb-8">Contáctenos</h3>
+                    <form onSubmit={handleSubmit} className="space-y-12">
+                        {/* 1. Datos de Identificación */}
+                        <div className="space-y-8">
+                            <div className="flex items-center gap-4 border-b border-gray-100 pb-4">
+                                <div className="p-3 bg-orange-50 rounded-xl text-orange-500">
+                                    <User className="size-5" />
+                                </div>
+                                <h3 className="text-xl font-black text-black uppercase tracking-tight">Datos de Identificación</h3>
+                            </div>
 
-                    <form className="space-y-6 text-left">
-                        <div className="relative">
-                            <i className="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-orange-500"></i>
-                            <input
-                                type="text"
-                                placeholder="Nombre Completo *"
-                                className="w-full pl-12 pr-4 py-4 bg-gray-50 border-none rounded-xl text-sm focus:ring-2 focus:ring-orange-500 outline-none transition-all"
-                                required
-                            />
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="space-y-2">
+                                    <Label htmlFor="name" className="text-xs font-black uppercase tracking-widest text-gray-400">Nombre Completo / Cargo *</Label>
+                                    <div className="relative group">
+                                        <User className="absolute left-4 top-1/2 -translate-y-1/2 text-orange-500 size-4 group-focus-within:scale-110 transition-transform" />
+                                        <Input id="name" name="name" type="text" placeholder="Ej: Juan Pérez / Gerente HSEQ" className="pl-12 h-14 bg-gray-50/50 border-gray-100 rounded-2xl focus:bg-white transition-all ring-orange-500/20" required />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="company" className="text-xs font-black uppercase tracking-widest text-gray-400">Razón Social *</Label>
+                                    <div className="relative group">
+                                        <Building className="absolute left-4 top-1/2 -translate-y-1/2 text-orange-500 size-4 group-focus-within:scale-110 transition-transform" />
+                                        <Input id="company" name="company" type="text" placeholder="Nombre legal de la empresa" className="pl-12 h-14 bg-gray-50/50 border-gray-100 rounded-2xl focus:bg-white transition-all ring-orange-500/20" required />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="email" className="text-xs font-black uppercase tracking-widest text-gray-400">Correo Electrónico Corporativo *</Label>
+                                    <div className="relative group">
+                                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-orange-500 size-4 group-focus-within:scale-110 transition-transform" />
+                                        <Input id="email" name="email" type="email" placeholder="ejemplo@empresa.com" className="pl-12 h-14 bg-gray-50/50 border-gray-100 rounded-2xl focus:bg-white transition-all ring-orange-500/20" required />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="phone" className="text-xs font-black uppercase tracking-widest text-gray-400">Teléfono / WhatsApp *</Label>
+                                    <div className="relative group">
+                                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-orange-500 size-4 group-focus-within:scale-110 transition-transform" />
+                                        <Input id="phone" name="phone" type="tel" placeholder="+57 300 000 0000" className="pl-12 h-14 bg-gray-50/50 border-gray-100 rounded-2xl focus:bg-white transition-all ring-orange-500/20" required />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="relative">
-                            <i className="fas fa-building absolute left-4 top-1/2 -translate-y-1/2 text-orange-500"></i>
-                            <input
-                                type="text"
-                                placeholder="Empresa / Organización"
-                                className="w-full pl-12 pr-4 py-4 bg-gray-50 border-none rounded-xl text-sm focus:ring-2 focus:ring-orange-500 outline-none transition-all"
-                            />
+                        {/* 2. Perfil Operativo */}
+                        <div className="space-y-8">
+                            <div className="flex items-center gap-4 border-b border-gray-100 pb-4">
+                                <div className="p-3 bg-blue-50 rounded-xl text-blue-500">
+                                    <List className="size-5" />
+                                </div>
+                                <h3 className="text-xl font-black text-black uppercase tracking-tight">Perfil Operativo</h3>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="space-y-2">
+                                    <Label htmlFor="employees" className="text-xs font-black uppercase tracking-widest text-gray-400">Número de Empleados</Label>
+                                    <Select name="employees">
+                                        <SelectTrigger className="h-14 bg-gray-50/50 border-gray-100 rounded-2xl focus:bg-white transition-all w-full ring-orange-500/20">
+                                            <SelectValue placeholder="Seleccione el rango" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="1-10">1 - 10 empleados</SelectItem>
+                                            <SelectItem value="11-50">11 - 50 empleados</SelectItem>
+                                            <SelectItem value="51-200">51 - 200 empleados</SelectItem>
+                                            <SelectItem value="200+">Más de 200 empleados</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="risk" className="text-xs font-black uppercase tracking-widest text-gray-400">Nivel de Riesgo (ARL)</Label>
+                                    <Select name="risk">
+                                        <SelectTrigger className="h-14 bg-gray-50/50 border-gray-100 rounded-2xl focus:bg-white transition-all w-full ring-orange-500/20">
+                                            <SelectValue placeholder="Seleccione el nivel" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="I">Clase I (Mínimo)</SelectItem>
+                                            <SelectItem value="II">Clase II (Bajo)</SelectItem>
+                                            <SelectItem value="III">Clase III (Medio)</SelectItem>
+                                            <SelectItem value="IV">Clase IV (Alto)</SelectItem>
+                                            <SelectItem value="V">Clase V (Máximo)</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+
+                                <div className="md:col-span-2 space-y-2">
+                                    <Label htmlFor="sector" className="text-xs font-black uppercase tracking-widest text-gray-400">Sector Económico / Actividad Principal</Label>
+                                    <Input id="sector" name="sector" type="text" placeholder="Ej: Construcción, Servicios, Manufactura..." className="h-14 bg-gray-50/50 border-gray-100 rounded-2xl focus:bg-white transition-all ring-orange-500/20" />
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="relative">
-                            <i className="fas fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-orange-500"></i>
-                            <input
-                                type="tel"
-                                placeholder="Teléfono *"
-                                className="w-full pl-12 pr-4 py-4 bg-gray-50 border-none rounded-xl text-sm focus:ring-2 focus:ring-orange-500 outline-none transition-all"
-                                required
-                            />
+                        {/* 3. Estado Actual del Sistema */}
+                        <div className="space-y-8">
+                            <div className="flex items-center gap-4 border-b border-gray-100 pb-4">
+                                <div className="p-3 bg-green-50 rounded-xl text-green-500">
+                                    <Settings className="size-5" />
+                                </div>
+                                <h3 className="text-xl font-black text-black uppercase tracking-tight">Estado Actual del Sistema</h3>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="space-y-2">
+                                    <Label htmlFor="progress" className="text-xs font-black uppercase tracking-widest text-gray-400">% de Avance del SG-SST</Label>
+                                    <Input id="progress" name="progress" type="text" placeholder="Ej: 45%" className="h-14 bg-gray-50/50 border-gray-100 rounded-2xl focus:bg-white transition-all ring-orange-500/20" />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="accidents" className="text-xs font-black uppercase tracking-widest text-gray-400">Índice de Accidentalidad (Último año)</Label>
+                                    <Input id="accidents" name="accidents" type="text" placeholder="N° de accidentes o índice" className="h-14 bg-gray-50/50 border-gray-100 rounded-2xl focus:bg-white transition-all ring-orange-500/20" />
+                                </div>
+
+                                <div className="md:col-span-2 space-y-2">
+                                    <Label htmlFor="current-systems" className="text-xs font-black uppercase tracking-widest text-gray-400">¿Cuenta actualmente con algún Sistema de Gestión implementado?</Label>
+                                    <Textarea
+                                        id="current-systems"
+                                        name="current-systems"
+                                        placeholder="Mencione ISO 9001, 14001, 45001, RUC, etc."
+                                        className="min-h-[100px] bg-gray-50/50 border-gray-100 rounded-2xl focus:bg-white transition-all ring-orange-500/20 resize-none pt-4"
+                                    />
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="relative">
-                            <i className="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-orange-500"></i>
-                            <input
-                                type="email"
-                                placeholder="Correo Electrónico *"
-                                className="w-full pl-12 pr-4 py-4 bg-gray-50 border-none rounded-xl text-sm focus:ring-2 focus:ring-orange-500 outline-none transition-all"
-                                required
-                            />
-                        </div>
-
-                        <div className="relative">
-                            <i className="fas fa-list absolute left-4 top-1/2 -translate-y-1/2 text-orange-500"></i>
-                            <select className="w-full pl-12 pr-10 py-4 bg-gray-50 border-none rounded-xl text-sm focus:ring-2 focus:ring-orange-500 outline-none appearance-none cursor-pointer transition-all">
-                                <option>Seleccione el asunto</option>
-                                <option>SST</option>
-                                <option>Medio Ambiente</option>
-                                <option>Calidad</option>
-                                <option>Otros</option>
-                            </select>
-                            <i className="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-orange-500 pointer-events-none"></i>
-                        </div>
-
-                        <div className="relative">
-                            <i className="fas fa-plus-circle absolute left-4 top-6 text-orange-500"></i>
-                            <textarea
-                                placeholder="Mensaje Detallado *"
-                                rows={4}
-                                className="w-full pl-12 pr-4 py-4 bg-gray-50 border-none rounded-xl text-sm focus:ring-2 focus:ring-orange-500 outline-none transition-all resize-none"
-                                required
-                            ></textarea>
-                        </div>
-
-                        <div className="space-y-4 pt-4">
-                            <label className="flex items-start gap-4 cursor-pointer group">
-                                <input type="checkbox" className="mt-1 w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" required />
-                                <span className="text-xs text-gray-500 font-medium leading-relaxed">
+                        <div className="space-y-4 pt-10 border-t border-gray-50">
+                            <div className="flex items-start space-x-3 group cursor-pointer">
+                                <Checkbox id="terms" name="terms" className="mt-1 border-gray-200 data-[state=checked]:bg-orange-500 data-[state=checked]:border-orange-500" required />
+                                <Label htmlFor="terms" className="text-[10px] text-gray-500 font-bold leading-relaxed cursor-pointer group-hover:text-gray-700 transition-colors uppercase tracking-wider">
                                     Acepto la <span className="text-orange-500 hover:underline">Política de Privacidad</span> y autorizo el tratamiento de mis datos personales *
-                                </span>
-                            </label>
-
-                            <label className="flex items-start gap-4 cursor-pointer group">
-                                <input type="checkbox" className="mt-1 w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" />
-                                <span className="text-xs text-gray-500 font-medium leading-relaxed">
-                                    Deseo recibir información sobre servicios, ofertas y novedades de SIPRAC
-                                </span>
-                            </label>
+                                </Label>
+                            </div>
                         </div>
+
+                        {status === 'error' && (
+                            <div className="p-4 bg-red-50 rounded-2xl flex items-center gap-3 text-red-600 text-sm font-bold animate-shake">
+                                <AlertCircle className="size-5 shrink-0" />
+                                {errorMessage}
+                            </div>
+                        )}
 
                         <div className="pt-6">
-                            <button className="w-full bg-orange-500 text-white py-4 rounded-full font-bold shadow-lg hover:shadow-orange-200 hover:-translate-y-1 transition-all flex items-center justify-center gap-3">
-                                <i className="fas fa-paper-plane"></i>
-                                Enviar Mensaje
-                            </button>
+                            <Button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="w-full h-16 rounded-full text-lg font-black shadow-xl shadow-orange-200/50 hover:shadow-orange-300/60 hover:-translate-y-1 transition-all group disabled:opacity-70 disabled:grayscale disabled:hover:translate-y-0"
+                            >
+                                {isSubmitting ? (
+                                    <span className="flex items-center gap-2">
+                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                        Procesando Diagnóstico...
+                                    </span>
+                                ) : (
+                                    <>
+                                        <Send className="mr-2 size-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                        Enviar Diagnóstico
+                                    </>
+                                )}
+                            </Button>
                         </div>
                     </form>
                 </div>

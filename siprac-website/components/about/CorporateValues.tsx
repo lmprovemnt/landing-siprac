@@ -32,21 +32,19 @@ const CorporateValues = () => {
                     <div className="w-16 h-1 bg-orange-500 mx-auto mt-6"></div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto">
                     {values.map((value, index) => (
                         <div
                             key={index}
-                            className={`rounded-3xl p-10 text-center transition-all duration-500 group cursor-default h-full flex flex-col items-center ${value.highlight
-                                    ? 'bg-gradient-to-br from-orange-400 to-orange-600 text-white shadow-2xl scale-105 border-none'
-                                    : 'bg-white text-gray-500 shadow-sm hover:shadow-xl hover:-translate-y-2'
-                                }`}
+                            className="bg-[#FAF9F6] rounded-[2.5rem] p-12 text-center flex flex-col items-center group cursor-default transition-all duration-500 shadow-[inset_12px_12px_24px_#d1cfcc,inset_-12px_-12px_24px_#ffffff]"
                         >
-                            <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500 ${value.highlight ? 'bg-white/20' : 'bg-orange-50'
-                                }`}>
-                                <i className={`fas ${value.icon} text-3xl ${value.highlight ? 'text-white' : 'text-orange-500'}`}></i>
+                            <div className="w-20 h-20 bg-[#FAF9F6] rounded-2xl flex items-center justify-center mb-10 shadow-[inset_8px_8px_16px_#d1cfcc,inset_-8px_-8px_16px_#ffffff] transition-all duration-500 border border-white/10">
+                                <i className={`fas ${value.icon} text-3xl transition-colors duration-500 ${value.highlight ? 'text-orange-600' : 'text-orange-500 opacity-60 group-hover:opacity-100 group-hover:text-orange-600'}`}></i>
                             </div>
-                            <h3 className={`text-2xl font-black mb-6 ${value.highlight ? 'text-white' : 'text-black'}`}>{value.title}</h3>
-                            <p className={`text-sm font-bold leading-relaxed ${value.highlight ? 'text-white/90' : 'text-gray-400'}`}>
+                            <h3 className={`text-2xl font-black mb-6 tracking-tight uppercase transition-colors duration-500 ${value.highlight ? 'text-orange-600' : 'text-black group-hover:text-orange-600'}`}>
+                                {value.title}
+                            </h3>
+                            <p className="text-[11px] font-extrabold text-gray-500 leading-relaxed uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">
                                 {value.description}
                             </p>
                         </div>

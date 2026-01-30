@@ -1,17 +1,22 @@
+import { Button } from "@/components/ui/Button";
+import { Mail } from "lucide-react";
+
 const teamMembers = [
     {
         name: "NINI JOHANA GUTIÉRREZ CÁRDENAS",
         role: "Gerente",
         specialty: "Profesional en Seguridad y Salud en el Trabajo",
         description: "Lidera la firma con una sólida trayectoria en consultoría empresarial y enfoque estratégico. Amplia experiencia en implementación de sistemas de gestión.",
-        icon: "fa-user-tie"
+        image: "/images/about/team-member-1.png",
+        email: "gerencia@siprac.com"
     },
     {
         name: "MICHEL DAYANA ORTEGA",
         role: "Analista en SST",
         specialty: "Tecnóloga en Seguridad y Salud en el Trabajo",
         description: "Especializada en Seguridad y Salud en el Trabajo (SST), con experiencia en la implementación y seguimiento de sistemas de gestión.",
-        icon: "fa-user-md"
+        image: "/images/about/team-member-2.png",
+        email: "analista-sst@siprac.com"
     }
 ]
 
@@ -29,9 +34,13 @@ const Team = () => {
                     {teamMembers.map((member, index) => (
                         <div key={index} className="flex flex-col md:flex-row bg-[#FAF9F6] rounded-3xl overflow-hidden shadow-sm border border-orange-50 hover:shadow-lg transition-all duration-500 group">
                             <div className="md:w-1/4 bg-[#FAF3E9] flex items-center justify-center py-12 px-8">
-                                <div className="w-32 h-32 bg-orange-500 rounded-full flex items-center justify-center text-white text-5xl shadow-xl group-hover:scale-110 transition-transform duration-500 relative overflow-hidden">
-                                    <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent"></div>
-                                    <i className={`fas ${member.icon} relative z-10`}></i>
+                                <div className="w-40 h-40 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-500 relative overflow-hidden border-4 border-white">
+                                    <img
+                                        src={member.image}
+                                        alt={member.name}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                 </div>
                             </div>
                             <div className="md:w-3/4 p-12 bg-white flex flex-col justify-center">
@@ -45,10 +54,12 @@ const Team = () => {
                                     {member.description}
                                 </p>
 
-                                <button className="flex items-center gap-3 text-orange-500 font-bold bg-orange-50 px-6 py-3 rounded-xl w-fit hover:bg-orange-500 hover:text-white transition-all duration-300">
-                                    <i className="fas fa-envelope"></i>
-                                    Email
-                                </button>
+                                <a href={`mailto:${member.email}`} className="inline-block">
+                                    <Button variant="secondary" className="bg-orange-50 text-orange-500 hover:bg-orange-500 hover:text-white transition-all duration-300 rounded-xl px-6 py-6 h-auto font-black flex items-center gap-3">
+                                        <Mail className="size-5" />
+                                        Email
+                                    </Button>
+                                </a>
                             </div>
                         </div>
                     ))}

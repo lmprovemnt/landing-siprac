@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 
 export default function AboutCTA() {
     return (
@@ -12,12 +12,14 @@ export default function AboutCTA() {
                     Contáctenos hoy mismo para una consultoría gratuita y descubra cómo podemos ayudarle a alcanzar sus objetivos.
                 </p>
                 <Button
-                    href="/contact"
+                    asChild
                     variant="secondary"
-                    size="large"
+                    size="lg"
                     className="bg-white text-blue-600 border-white hover:bg-blue-50 hover:text-blue-700"
                 >
-                    Agendar Consulta
+                    <Link href="/contact">
+                        Agendar Consulta
+                    </Link>
                 </Button>
             </div>
         </section>

@@ -1,24 +1,25 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
+import { Calendar } from "lucide-react";
 
 const CTA = () => {
     return (
         <section className="py-24 bg-[#FAF9F6]">
             <div className="container mx-auto px-4">
-                <div className="bg-white rounded-[2rem] p-12 md:p-20 text-center shadow-sm border border-orange-100 flex flex-col items-center max-w-6xl mx-auto">
-                    <h2 className="text-3xl md:text-5xl font-bold text-orange-500 mb-6 leading-tight">
+                <div className="bg-white rounded-[3rem] p-12 md:p-20 text-center shadow-xl shadow-orange-100/50 border border-orange-50 flex flex-col items-center max-w-5xl mx-auto">
+                    <h2 className="text-4xl md:text-6xl font-black text-orange-500 mb-6 leading-tight tracking-tighter">
                         ¿Listo para transformar su organización?
                     </h2>
-                    <p className="text-gray-500 font-medium mb-12 text-sm md:text-lg">
-                        Solicite una consultoría gratuita y descubra cómo podemos ayudarle
+                    <p className="text-gray-500 font-bold mb-12 text-sm md:text-xl uppercase tracking-widest opacity-80">
+                        Solicite una consultoría gratuita hoy mismo
                     </p>
 
-                    <Link
-                        href="/contact"
-                        className="bg-orange-500 text-white px-10 py-5 rounded-xl font-bold text-sm md:text-base flex items-center gap-3 hover:bg-orange-600 transition-all shadow-lg hover:shadow-orange-200 group"
-                    >
-                        <i className="fas fa-calendar-alt transition-transform group-hover:scale-110"></i>
-                        Solicitar Consultoría Gratuita
-                    </Link>
+                    <Button asChild size="lg" className="h-16 px-12 rounded-full font-black text-lg shadow-2xl shadow-orange-200/50 hover:shadow-orange-300/60 transition-all hover:-translate-y-1">
+                        <Link href="/contact" className="flex items-center gap-3">
+                            <Calendar className="size-6" />
+                            Solicitar Consultoría Gratuita
+                        </Link>
+                    </Button>
                 </div>
             </div>
         </section>
