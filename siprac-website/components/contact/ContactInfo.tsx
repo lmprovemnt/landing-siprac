@@ -1,3 +1,5 @@
+import { PhoneForwarded, Send, CalendarDays } from 'lucide-react';
+
 export default function ContactInfo() {
     const infoCards = [
         {
@@ -50,20 +52,22 @@ export default function ContactInfo() {
                             <div className="w-16 h-16 bg-[#FAF9F6] rounded-2xl flex items-center justify-center mb-8 shadow-[inset_6px_6px_12px_#d1cfcc,inset_-6px_-6px_12px_#ffffff] border border-white/10 group-hover:text-orange-500 transition-colors duration-500 text-gray-400">
                                 <i className={`${card.icon} text-2xl`}></i>
                             </div>
-                            <h3 className="text-2xl font-black text-black mb-8 tracking-tight uppercase group-hover:text-orange-600 transition-colors duration-500">{card.title}</h3>
+                            <h3 className="text-3xl font-black text-black mb-8 tracking-tight uppercase group-hover:text-orange-600 transition-colors duration-500">{card.title}</h3>
 
                             {card.items && (
                                 <div className="space-y-4 w-full mb-8">
                                     {card.items.map((item, i) => (
-                                        <div key={i} className="bg-[#FAF9F6] py-4 px-6 rounded-2xl shadow-[inset_4px_4px_8px_#d1cfcc,inset_-4px_-4px_8px_#ffffff] text-xs text-gray-700 font-bold uppercase tracking-widest border border-white/5 opacity-80 group-hover:opacity-100 transition-opacity">
-                                            {item}
+                                        <div key={i} className="py-4 px-6 rounded-2xl text-[13px] text-gray-700 font-bold uppercase tracking-widest border border-white/5 opacity-80 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                                            {card.title === "Teléfonos" && <PhoneForwarded className="size-4 text-orange-500 shrink-0" />}
+                                            {card.title === "Correos Electrónicos" && <Send className="size-4 text-orange-500 shrink-0" />}
+                                            <span className="whitespace-nowrap">{item}</span>
                                         </div>
                                     ))}
                                 </div>
                             )}
 
                             {card.content && (
-                                <p className="text-[11px] font-extrabold text-gray-500 leading-relaxed uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity mb-8">
+                                <p className="text-sm font-extrabold text-gray-500 leading-relaxed uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity mb-8">
                                     {card.content}
                                 </p>
                             )}
@@ -73,7 +77,7 @@ export default function ContactInfo() {
                                     href="https://wa.me/573116300848"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`${card.button.color} text-white px-10 py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-2 hover:scale-105 transition-transform mb-8 shadow-lg`}
+                                    className={`${card.button.color} text-white px-10 py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] flex items-center gap-2 hover:scale-105 transition-transform mb-8 shadow-lg`}
                                 >
                                     <i className="fab fa-whatsapp text-lg"></i>
                                     {card.button.text}
@@ -81,18 +85,21 @@ export default function ContactInfo() {
                             )}
 
                             {card.details && (
-                                <div className="space-y-5 w-full mb-8 text-left">
+                                <div className="space-y-5 w-full mb-8 text-center">
                                     {card.details.map((detail, i) => (
-                                        <div key={i} className="flex justify-between items-center bg-[#FAF9F6] p-4 rounded-xl shadow-[inset_4px_4px_8px_#d1cfcc,inset_-4px_-4px_8px_#ffffff] border border-white/5">
-                                            <span className="text-[10px] font-black text-black uppercase tracking-wider">{detail.label}:</span>
-                                            <span className="text-[11px] text-gray-600 font-bold uppercase">{detail.value}</span>
+                                        <div key={i} className="flex flex-col items-center justify-center bg-[#FAF9F6] p-5 rounded-xl border border-white/5 gap-2">
+                                            <div className="flex items-center gap-2">
+                                                <CalendarDays className="size-4 text-orange-500 shrink-0" />
+                                                <span className="text-xs font-black text-black uppercase tracking-wider">{detail.label}:</span>
+                                            </div>
+                                            <span className="text-sm text-gray-600 font-bold uppercase">{detail.value}</span>
                                         </div>
                                     ))}
                                 </div>
                             )}
 
                             {card.footer && (
-                                <p className="text-[10px] text-gray-400 font-bold italic uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">
+                                <p className="text-xs text-gray-400 font-bold italic uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">
                                     {card.footer}
                                 </p>
                             )}
