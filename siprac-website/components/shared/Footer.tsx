@@ -98,7 +98,7 @@ export default function Footer() {
             <ul className="space-y-4 text-gray-400 text-sm">
               <li className="flex items-start gap-3">
                 <i className="fas fa-map-marker-alt text-orange-500 mt-1"></i>
-                <span>Medellín, Colombia</span>
+                <span>Cali, Colombia</span>
               </li>
               <li className="flex items-start gap-3">
                 <i className="fas fa-phone-alt text-orange-500 mt-1"></i>

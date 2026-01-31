@@ -43,7 +43,7 @@ export default function PrivacyContent() {
                 SIPRAC (Servicios Integrales en Prevención de Riesgos y Gestión)
               </span>
               , identificada con las normativas legales vigentes en Colombia y
-              con domicilio principal en Medellín, es la entidad responsable del
+              con domicilio principal en Cali, es la entidad responsable del
               tratamiento de sus datos personales.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
