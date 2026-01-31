@@ -53,36 +53,36 @@ const CoreAdvisory = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-7xl mx-auto">
+                <div className="flex overflow-x-auto pb-12 -mx-4 px-4 md:grid md:grid-cols-2 md:gap-12 md:pb-0 md:mx-auto snap-x snap-mandatory">
                     {advisoryServices.map((service, index) => (
                         <div
                             key={index}
-                            className={`relative group ${index % 2 === 1 ? 'md:mt-24' : ''}`}
+                            className={`relative group min-w-[280px] flex-shrink-0 snap-center ${index % 2 === 1 ? 'md:mt-24' : ''}`}
                         >
                             {/* Background Number */}
-                            <div className="absolute -top-12 -left-6 text-[10rem] font-black text-gray-50 opacity-50 group-hover:text-orange-50 group-hover:opacity-100 transition-all duration-700 -z-10 select-none">
+                            <div className="absolute -top-12 -left-6 text-[8rem] md:text-[10rem] font-black text-gray-50 opacity-50 group-hover:text-orange-50 group-hover:opacity-100 transition-all duration-700 -z-10 select-none">
                                 0{index + 1}
                             </div>
 
-                            <div className="bg-[#FAF9F6] rounded-[3rem] p-12 shadow-[inset_10px_10px_20px_#d1cfcc,inset_-10px_-10px_20px_#ffffff] transition-all duration-500 cursor-default">
-                                <div className="flex items-center gap-6 mb-8">
-                                    <div className="p-5 bg-[#FAF9F6] rounded-3xl text-orange-500 shadow-[inset_6px_6px_12px_#d1cfcc,inset_-6px_-6px_12px_#ffffff] border border-white/50 group-hover:text-orange-600 transition-colors duration-500">
-                                        {service.icon}
+                            <div className="bg-[#FAF9F6] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-[inset_8px_8px_16px_#d1cfcc,inset_-8px_-8px_16px_#ffffff] md:shadow-[inset_10px_10px_20px_#d1cfcc,inset_-10px_-10px_20px_#ffffff] transition-all duration-500 cursor-default h-full flex flex-col">
+                                <div className="flex items-center gap-4 md:gap-6 mb-4 md:mb-8">
+                                    <div className="p-3 md:p-5 bg-[#FAF9F6] rounded-2xl md:rounded-3xl text-orange-500 shadow-[inset_4px_4px_8px_#d1cfcc,inset_-4px_-4px_8px_#ffffff] md:shadow-[inset_6px_6px_12px_#d1cfcc,inset_-6px_-6px_12px_#ffffff] border border-white/50 group-hover:text-orange-600 transition-colors duration-500">
+                                        {React.cloneElement(service.icon as React.ReactElement, { className: "size-6 md:size-8" })}
                                     </div>
                                     <div className={`h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent`}></div>
                                 </div>
 
-                                <h3 className="text-2xl font-black text-black mb-6 tracking-tight uppercase leading-tight group-hover:text-orange-600 transition-colors">
+                                <h3 className="text-xl md:text-2xl font-black text-black mb-3 md:mb-6 tracking-tight uppercase leading-tight group-hover:text-orange-600 transition-colors">
                                     {service.title}
                                 </h3>
 
-                                <p className="text-gray-500 font-bold leading-relaxed text-base opacity-80 group-hover:opacity-100 transition-opacity">
+                                <p className="text-gray-500 font-bold leading-relaxed text-sm md:text-base opacity-80 group-hover:opacity-100 transition-opacity flex-1">
                                     {service.description}
                                 </p>
 
-                                <div className="mt-10 flex items-center gap-3">
-                                    <div className="w-10 h-1 bg-orange-500/20 group-hover:w-24 transition-all duration-500 rounded-full"></div>
-                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-500">
+                                <div className="mt-6 md:mt-10 flex items-center gap-3">
+                                    <div className="w-8 md:w-10 h-1 bg-orange-500/20 group-hover:w-16 md:group-hover:w-24 transition-all duration-500 rounded-full"></div>
+                                    <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-orange-500">
                                         Excelencia Operativa
                                     </span>
                                 </div>

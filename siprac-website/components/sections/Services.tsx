@@ -65,72 +65,82 @@ const services = [
     }
 ]
 
+// Reusable Neumorphic Card Component
+const NeumorphicCard = ({ service, index }: { service: any, index: number }) => (
+    <div className="min-w-[280px] md:min-w-[350px] h-auto md:h-[450px] bg-[#FAF9F6] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 relative overflow-hidden group/card shadow-[10px_10px_20px_#d1d5db,-10px_-10px_20px_#ffffff] transition-transform duration-300 hover:-translate-y-2 flex flex-col">
+
+        {/* Header: Icon & Arrow */}
+        <div className="flex justify-between items-start mb-4 md:mb-8">
+            <div className={`p-3 md:p-4 rounded-xl md:rounded-2xl text-orange-500 shadow-[inset_4px_4px_8px_#d1cfcc,inset_-4px_-4px_8px_#ffffff] bg-[#FAF9F6] group-hover/card:text-orange-600 transition-colors duration-500`}>
+                {React.cloneElement(service.icon as React.ReactElement, { className: "size-6 md:size-8" })}
+            </div>
+            <div className="text-gray-300 group-hover/card:text-orange-500 transition-colors">
+                <ArrowUpRight className="size-5 md:size-6" />
+            </div>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-xl md:text-2xl font-black mb-3 md:mb-4 text-black leading-tight tracking-tight uppercase">
+            {service.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-xs md:text-sm text-gray-500 mb-6 md:mb-8 leading-relaxed font-bold opacity-80">
+            {service.description}
+        </p>
+
+        {/* List Items */}
+        <div className="space-y-2 md:space-y-3 mt-auto">
+            {service.items.map((item: string, idx: number) => (
+                <div key={idx} className="flex items-center gap-2 md:gap-3">
+                    <div className="size-1.5 md:size-2 rounded-full bg-orange-500 shrink-0 shadow-[2px_2px_4px_#d1cfcc]"></div>
+                    <span className="text-[10px] md:text-xs font-bold text-gray-600 uppercase tracking-wide">{item}</span>
+                </div>
+            ))}
+        </div>
+
+        {/* Decorative corner accent */}
+        <div className={`absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-br ${service.color} opacity-10 rounded-tl-[100px] pointer-events-none`}></div>
+    </div>
+);
+
 const Services = () => {
-    const duplicatedServices = [...services, ...services, ...services];
+    // Duplicate for infinite scroll effect
+    const duplicatedServices = [...services, ...services];
 
     return (
-        <section id="servicios" className="py-24 bg-white overflow-hidden w-full relative">
-            {/* Background decorative elements */}
-            <div className="absolute top-0 left-1/4 w-64 h-64 bg-orange-50 rounded-full blur-3xl opacity-50 -z-10 animate-pulse"></div>
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gray-50 rounded-full blur-3xl opacity-50 -z-10"></div>
+        <section id="servicios" className="py-24 bg-[#FAF9F6] overflow-hidden w-full relative">
 
             <div className="w-full relative z-10">
                 <div className="text-center mb-16 px-4">
                     <span className="text-orange-500 text-xs font-black uppercase tracking-[0.3em] mb-4 block">Especialidades</span>
                     <h2 className="text-4xl md:text-5xl font-black mb-6 text-black tracking-tight uppercase">Portafolio de Servicios</h2>
-                    <div className="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+                    <div className="w-20 h-1 bg-gray-200 mx-auto rounded-full overflow-hidden">
+                        <div className="w-1/2 h-full bg-orange-500 mx-auto"></div>
+                    </div>
                 </div>
 
                 <div className="relative group/carousel">
-                    {/* The track container with pause on hover */}
-                    <div className="flex gap-6 animate-infinite-scroll group-hover/carousel:[animation-play-state:paused] py-10">
-                        {duplicatedServices.map((service, index) => (
-                            <div
-                                key={index}
-                                className="min-w-[300px] h-[420px] bg-white rounded-[2.5rem] p-8 shadow-xl shadow-gray-200/40 border border-gray-50 flex flex-col relative overflow-hidden group/card hover:-translate-y-2 transition-all duration-500"
-                            >
-                                {/* Active background hover effect */}
-                                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover/card:opacity-[0.03] transition-opacity duration-500`}></div>
 
-                                <div className="flex justify-between items-start mb-8">
-                                    <div className="p-4 bg-orange-50 rounded-2xl text-orange-500 shadow-sm group-hover/card:scale-110 group-hover/card:bg-orange-500 group-hover/card:text-white transition-all duration-500">
-                                        {service.icon}
-                                    </div>
-                                    <div className="text-gray-200 group-hover/card:text-orange-500 transition-colors">
-                                        <ArrowUpRight className="size-6" />
-                                    </div>
-                                </div>
-
-                                <h3 className="text-xl font-black mb-4 text-black leading-tight tracking-tight">
-                                    {service.title}
-                                </h3>
-
-                                <p className="text-xs text-gray-500 mb-6 leading-relaxed font-medium">
-                                    {service.description}
-                                </p>
-
-                                <div className="space-y-3 mt-auto">
-                                    {service.items.map((item, idx) => (
-                                        <div key={idx} className="flex items-center gap-3">
-                                            <div className="size-5 rounded-full bg-orange-50 flex items-center justify-center shrink-0 group-hover/card:bg-orange-100 transition-colors">
-                                                <CheckCircle2 className="size-3 text-orange-500" />
-                                            </div>
-                                            <span className="text-[11px] font-bold text-gray-700">{item}</span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* Watermark */}
-                                <div className="absolute -bottom-6 -right-6 opacity-[0.02] group-hover/card:opacity-[0.05] transition-opacity duration-500 pointer-events-none rotate-12 group-hover/card:rotate-0 transform transition-transform duration-700">
-                                    <div className="text-9xl font-black">SIPRAC</div>
-                                </div>
+                    {/* Mobile: Manual Carousel (Swipe) */}
+                    <div className="md:hidden flex overflow-x-auto pb-12 -mx-4 px-4 snap-x snap-mandatory gap-6 scroll-smooth">
+                        {services.map((service, index) => (
+                            <div key={`mobile-${index}`} className="snap-center flex-shrink-0">
+                                <NeumorphicCard service={service} index={index} />
                             </div>
                         ))}
                     </div>
 
-                    {/* Enhanced edge gradients */}
-                    <div className="absolute top-0 left-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-                    <div className="absolute top-0 right-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+                    {/* Desktop: Infinite Scroll (Auto) */}
+                    <div className="hidden md:flex gap-8 animate-infinite-scroll group-hover/carousel:[animation-play-state:paused] py-10 px-4">
+                        {duplicatedServices.map((service, index) => (
+                            <NeumorphicCard key={`desktop-${index}`} service={service} index={index} />
+                        ))}
+                    </div>
+
+                    {/* Gradient Masks (Desktop Only) */}
+                    <div className="hidden md:block absolute top-0 left-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-[#FAF9F6] via-[#FAF9F6]/80 to-transparent z-10 pointer-events-none"></div>
+                    <div className="hidden md:block absolute top-0 right-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-[#FAF9F6] via-[#FAF9F6]/80 to-transparent z-10 pointer-events-none"></div>
                 </div>
 
             </div>

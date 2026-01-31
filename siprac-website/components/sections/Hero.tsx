@@ -4,12 +4,34 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const AnimatedCounter = ({ target, duration = 1500 }: { target: string, duration?: number }) => {
     const [count, setCount] = useState(0);
+    const elementRef = useRef<HTMLSpanElement>(null);
     const countRef = useRef(0);
+    const [hasPlayed, setHasPlayed] = useState(false);
     const targetNum = parseInt(target);
     const suffix = target.replace(/[0-9]/g, '');
 
     useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting && !hasPlayed) {
+                    setHasPlayed(true);
+                }
+            },
+            { threshold: 0.1 } // Trigger when 10% visible
+        );
+
+        if (elementRef.current) {
+            observer.observe(elementRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, [hasPlayed]);
+
+    useEffect(() => {
+        if (!hasPlayed) return;
+
         let startTime: number | null = null;
+        let animationFrameId: number;
 
         const animate = (timestamp: number) => {
             if (!startTime) startTime = timestamp;
@@ -26,17 +48,19 @@ const AnimatedCounter = ({ target, duration = 1500 }: { target: string, duration
             }
 
             if (progress < 1) {
-                requestAnimationFrame(animate);
+                animationFrameId = requestAnimationFrame(animate);
             }
         };
 
-        requestAnimationFrame(animate);
-    }, [targetNum, duration]);
+        animationFrameId = requestAnimationFrame(animate);
+
+        return () => cancelAnimationFrame(animationFrameId);
+    }, [hasPlayed, targetNum, duration]);
 
     return (
-        <>
+        <span ref={elementRef}>
             {count}{suffix}
-        </>
+        </span>
     );
 };
 
