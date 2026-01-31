@@ -1,4 +1,5 @@
 import { PhoneForwarded, Send, CalendarDays } from 'lucide-react';
+import MobileCarousel from '../ui/MobileCarousel';
 
 export default function ContactInfo() {
     const infoCards = [
@@ -44,11 +45,11 @@ export default function ContactInfo() {
     ];
 
     return (
-        <section className="py-24 bg-[#FAF9F6]">
+        <section className="py-12 md:py-24 bg-[#FAF9F6]">
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <MobileCarousel className="grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 max-w-5xl mx-auto md:pb-0 scrollbar-hide">
                     {infoCards.map((card, idx) => (
-                        <div key={idx} className="bg-[#FAF9F6] rounded-[2.5rem] p-12 shadow-[inset_12px_12px_24px_#d1cfcc,inset_-12px_-12px_24px_#ffffff] transition-all duration-500 flex flex-col items-center text-center group">
+                        <div key={idx} className="bg-[#FAF9F6] rounded-[2.5rem] p-12 shadow-[inset_12px_12px_24px_#d1cfcc,inset_-12px_-12px_24px_#ffffff] transition-all duration-500 flex flex-col items-center text-center group h-full">
                             <div className="w-16 h-16 bg-[#FAF9F6] rounded-2xl flex items-center justify-center mb-8 shadow-[inset_6px_6px_12px_#d1cfcc,inset_-6px_-6px_12px_#ffffff] border border-white/10 group-hover:text-orange-500 transition-colors duration-500 text-gray-400">
                                 <i className={`${card.icon} text-2xl`}></i>
                             </div>
@@ -99,13 +100,13 @@ export default function ContactInfo() {
                             )}
 
                             {card.footer && (
-                                <p className="text-xs text-gray-400 font-bold italic uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">
+                                <p className="text-xs text-gray-400 font-bold italic uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity mt-auto">
                                     {card.footer}
                                 </p>
                             )}
                         </div>
                     ))}
-                </div>
+                </MobileCarousel>
             </div>
         </section>
     );
