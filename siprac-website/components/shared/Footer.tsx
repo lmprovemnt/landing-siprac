@@ -117,20 +117,6 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} SIPRAC. Todos los derechos
             reservados.
           </p>
-          <div className="flex gap-6">
-            <Link
-              href="/privacy"
-              className="hover:text-orange-500 transition-colors"
-            >
-              Tratamiento de Datos
-            </Link>
-            <Link
-              href="/terms"
-              className="hover:text-orange-500 transition-colors"
-            >
-              Términos y Condiciones
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
