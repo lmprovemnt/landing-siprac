@@ -1,38 +1,46 @@
-import MobileCarousel from '../ui/MobileCarousel';
+import MobileCarousel from "../ui/MobileCarousel";
 
 const values = [
-    {
-        title: "Compromiso",
-        description: "Trabajamos con responsabilidad y dedicación para cumplir con las expectativas de nuestros clientes.",
-        icon: "fa-hands-helping"
-    },
-    {
-        title: "Excelencia",
-        description: "Buscamos la mejora continua en todos nuestros servicios para garantizar la calidad.",
-        icon: "fa-award"
-    },
-    {
-        title: "Integridad",
-        description: "Actuamos con transparencia, ética y respeto en todas nuestras actividades.",
-        icon: "fa-balance-scale",
-        highlight: true
-    },
-    {
-        title: "Innovación",
-        description: "Aplicamos soluciones innovadoras y tecnológicas en nuestros procesos de consultoría.",
-        icon: "fa-lightbulb"
-    }
-]
+  {
+    title: "Compromiso",
+    description:
+      "Trabajamos con responsabilidad y dedicación para cumplir con las expectativas de nuestros clientes.",
+    icon: "fa-hands-helping",
+  },
+  {
+    title: "Excelencia",
+    description:
+      "Buscamos la mejora continua en todos nuestros servicios para garantizar la calidad.",
+    icon: "fa-award",
+  },
+  {
+    title: "Integridad",
+    description:
+      "Actuamos con transparencia, ética y respeto en todas nuestras actividades.",
+    icon: "fa-balance-scale",
+    highlight: true,
+  },
+  {
+    title: "Innovación",
+    description:
+      "Aplicamos soluciones innovadoras y tecnológicas en nuestros procesos de consultoría.",
+    icon: "fa-lightbulb",
+  },
+];
 
 const CorporateValues = () => {
-    return (
-        <section className="py-12 md:py-24 bg-[#FAF9F6]">
-            <div className="container mx-auto px-4">
-                <div className="text-center mb-10 md:mb-20">
-                    <h2 className="text-3xl md:text-5xl font-extrabold text-orange-500 mb-4 tracking-tighter">Valores Corporativos</h2>
-                    <p className="text-gray-400 font-bold uppercase tracking-widest text-xs md:text-sm">Principios que guían nuestro trabajo</p>
-                    <div className="w-16 h-1 bg-orange-500 mx-auto mt-6"></div>
-                </div>
+  return (
+    <section className="py-12 md:py-24 bg-[#FAF9F6]">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-10 md:mb-20">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-orange-500 mb-4 tracking-tighter">
+            Valores Corporativos
+          </h2>
+          <p className="text-gray-400 font-bold uppercase tracking-widest text-xs md:text-sm">
+            Principios que guían nuestro trabajo
+          </p>
+          <div className="w-16 h-1 bg-orange-500 mx-auto mt-6"></div>
+        </div>
 
                 <MobileCarousel className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto md:mx-auto justify-center md:pb-0 scrollbar-hide">
                     {values.map((value, index) => (
@@ -53,8 +61,11 @@ const CorporateValues = () => {
                     ))}
                 </MobileCarousel>
             </div>
-        </section>
-    );
+          ))}
+        </MobileCarousel>
+      </div>
+    </section>
+  );
 };
 
 export default CorporateValues;
