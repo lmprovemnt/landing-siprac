@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { CheckCircle2, Shield, Leaf, Award, Search, FileText, Settings, ArrowRight } from 'lucide-react'
+import MobileCarousel from '../ui/MobileCarousel'
 
 const serviceDetails = [
     {
@@ -99,15 +100,14 @@ const serviceDetails = [
 
 const DetailedServices = () => {
     return (
-        <section className="py-24 bg-[#FAF9F6]">
+        <section className="py-12 md:py-24 bg-[#FAF9F6]">
             <div className="container mx-auto px-4">
-                <div className="flex overflow-x-auto pb-12 -mx-4 px-4 md:grid md:grid-cols-1 md:gap-20 md:pb-0 md:mx-auto snap-x snap-mandatory">
+                <MobileCarousel className="grid-cols-1 gap-12 md:gap-20 md:pb-0 scrollbar-hide">
                     {serviceDetails.map((service, index) => (
                         <div
                             key={service.id}
                             className={`
-                                relative flex flex-col 
-                                min-w-full flex-shrink-0 snap-center 
+                                relative flex flex-col h-full
                                 bg-[#FAF9F6] rounded-[2.5rem] p-8 shadow-[10px_10px_20px_#d1cfcc,-10px_-10px_20px_#ffffff] border border-white/50
                                 md:bg-transparent md:p-0 md:shadow-none md:border-none md:flex-row md:items-center md:gap-20
                                 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}
@@ -173,7 +173,7 @@ const DetailedServices = () => {
                             </div>
                         </div>
                     ))}
-                </div>
+                </MobileCarousel>
             </div>
         </section>
     )

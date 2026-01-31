@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     HardHat,
     Leaf,
@@ -72,7 +72,7 @@ const NeumorphicCard = ({ service, index }: { service: any, index: number }) => 
         {/* Header: Icon & Arrow */}
         <div className="flex justify-between items-start mb-4 md:mb-8">
             <div className={`p-3 md:p-4 rounded-xl md:rounded-2xl text-orange-500 shadow-[inset_4px_4px_8px_#d1cfcc,inset_-4px_-4px_8px_#ffffff] bg-[#FAF9F6] group-hover/card:text-orange-600 transition-colors duration-500`}>
-                {React.cloneElement(service.icon as React.ReactElement, { className: "size-6 md:size-8" })}
+                {React.cloneElement(service.icon as React.ReactElement<{ className?: string }>, { className: "size-6 md:size-8" })}
             </div>
             <div className="text-gray-300 group-hover/card:text-orange-500 transition-colors">
                 <ArrowUpRight className="size-5 md:size-6" />
@@ -105,7 +105,20 @@ const NeumorphicCard = ({ service, index }: { service: any, index: number }) => 
 );
 
 const Services = () => {
-    // Duplicate for infinite scroll effect
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Duplicate for infinite scroll effect (desktop only)
     const duplicatedServices = [...services, ...services];
 
     return (
@@ -122,25 +135,30 @@ const Services = () => {
 
                 <div className="relative group/carousel">
 
-                    {/* Mobile: Manual Carousel (Swipe) */}
-                    <div className="md:hidden flex overflow-x-auto pb-12 -mx-4 px-4 snap-x snap-mandatory gap-6 scroll-smooth">
-                        {services.map((service, index) => (
-                            <div key={`mobile-${index}`} className="snap-center flex-shrink-0">
-                                <NeumorphicCard service={service} index={index} />
+                    {isMobile ? (
+                        /* Mobile: Manual Carousel (Swipe) */
+                        <div className="flex overflow-x-auto pb-12 -mx-4 px-4 snap-x snap-mandatory gap-6 scroll-smooth">
+                            {services.map((service, index) => (
+                                <div key={`mobile-${index}`} className="snap-center flex-shrink-0">
+                                    <NeumorphicCard service={service} index={index} />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        /* Desktop: Infinite Scroll (Auto) */
+                        <>
+                            <div className="flex gap-8 animate-infinite-scroll group-hover/carousel:[animation-play-state:paused] py-10 px-4">
+                                {duplicatedServices.map((service, index) => (
+                                    <NeumorphicCard key={`desktop-${index}`} service={service} index={index} />
+                                ))}
                             </div>
-                        ))}
-                    </div>
 
-                    {/* Desktop: Infinite Scroll (Auto) */}
-                    <div className="hidden md:flex gap-8 animate-infinite-scroll group-hover/carousel:[animation-play-state:paused] py-10 px-4">
-                        {duplicatedServices.map((service, index) => (
-                            <NeumorphicCard key={`desktop-${index}`} service={service} index={index} />
-                        ))}
-                    </div>
+                            {/* Gradient Masks */}
+                            <div className="absolute top-0 left-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-[#FAF9F6] via-[#FAF9F6]/80 to-transparent z-10 pointer-events-none"></div>
+                            <div className="absolute top-0 right-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-[#FAF9F6] via-[#FAF9F6]/80 to-transparent z-10 pointer-events-none"></div>
+                        </>
+                    )}
 
-                    {/* Gradient Masks (Desktop Only) */}
-                    <div className="hidden md:block absolute top-0 left-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-[#FAF9F6] via-[#FAF9F6]/80 to-transparent z-10 pointer-events-none"></div>
-                    <div className="hidden md:block absolute top-0 right-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-[#FAF9F6] via-[#FAF9F6]/80 to-transparent z-10 pointer-events-none"></div>
                 </div>
 
             </div>

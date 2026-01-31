@@ -1,3 +1,5 @@
+import MobileCarousel from '../ui/MobileCarousel';
+
 const values = [
     {
         title: "Compromiso",
@@ -24,19 +26,19 @@ const values = [
 
 const CorporateValues = () => {
     return (
-        <section className="py-24 bg-[#FAF9F6]">
+        <section className="py-12 md:py-24 bg-[#FAF9F6]">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-20">
-                    <h2 className="text-5xl font-extrabold text-orange-500 mb-4 tracking-tighter">Valores Corporativos</h2>
-                    <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">Principios que guían nuestro trabajo</p>
+                <div className="text-center mb-10 md:mb-20">
+                    <h2 className="text-3xl md:text-5xl font-extrabold text-orange-500 mb-4 tracking-tighter">Valores Corporativos</h2>
+                    <p className="text-gray-400 font-bold uppercase tracking-widest text-xs md:text-sm">Principios que guían nuestro trabajo</p>
                     <div className="w-16 h-1 bg-orange-500 mx-auto mt-6"></div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto">
+                <MobileCarousel className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto md:pb-0 scrollbar-hide">
                     {values.map((value, index) => (
                         <div
                             key={index}
-                            className="bg-[#FAF9F6] rounded-[2.5rem] p-12 text-center flex flex-col items-center group cursor-default transition-all duration-500 shadow-[inset_12px_12px_24px_#d1cfcc,inset_-12px_-12px_24px_#ffffff]"
+                            className="bg-[#FAF9F6] rounded-[2.5rem] p-12 text-center flex flex-col items-center group cursor-default transition-all duration-500 shadow-[inset_12px_12px_24px_#d1cfcc,inset_-12px_-12px_24px_#ffffff] h-full"
                         >
                             <div className="w-20 h-20 bg-[#FAF9F6] rounded-2xl flex items-center justify-center mb-10 shadow-[inset_8px_8px_16px_#d1cfcc,inset_-8px_-8px_16px_#ffffff] transition-all duration-500 border border-white/10">
                                 <i className={`fas ${value.icon} text-3xl transition-colors duration-500 ${value.highlight ? 'text-orange-600' : 'text-orange-500 opacity-60 group-hover:opacity-100 group-hover:text-orange-600'}`}></i>
@@ -49,7 +51,7 @@ const CorporateValues = () => {
                             </p>
                         </div>
                     ))}
-                </div>
+                </MobileCarousel>
             </div>
         </section>
     );
