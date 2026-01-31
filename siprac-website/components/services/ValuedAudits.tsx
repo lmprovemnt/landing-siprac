@@ -43,11 +43,11 @@ const ValuedAudits = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div className="flex overflow-x-auto pb-8 -mx-4 px-4 md:grid md:grid-cols-2 md:gap-8 md:pb-0 md:mx-auto snap-x snap-mandatory">
                     {audits.map((audit, index) => (
                         <div
                             key={index}
-                            className="bg-[#FAF9F6] rounded-[2.5rem] p-10 flex flex-col group cursor-default shadow-[inset_10px_10px_20px_#d1cfcc,inset_-10px_-10px_20px_#ffffff]"
+                            className="bg-[#FAF9F6] rounded-[2.5rem] p-10 flex flex-col group cursor-default shadow-[inset_10px_10px_20px_#d1cfcc,inset_-10px_-10px_20px_#ffffff] min-w-[300px] flex-shrink-0 snap-center"
                         >
                             <div className="flex items-start justify-between mb-8">
                                 <div className={`p-4 bg-[#FAF9F6] rounded-2xl text-orange-500 shadow-[inset_4px_4px_8px_#d1cfcc,inset_-4px_-4px_8px_#ffffff] border border-white/50 group-hover:text-orange-600 transition-colors duration-500`}>

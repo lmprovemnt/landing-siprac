@@ -101,39 +101,50 @@ const DetailedServices = () => {
     return (
         <section className="py-24 bg-[#FAF9F6]">
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 gap-20">
+                <div className="flex overflow-x-auto pb-12 -mx-4 px-4 md:grid md:grid-cols-1 md:gap-20 md:pb-0 md:mx-auto snap-x snap-mandatory">
                     {serviceDetails.map((service, index) => (
                         <div
                             key={service.id}
-                            className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12 lg:gap-20`}
+                            className={`
+                                relative flex flex-col 
+                                min-w-full flex-shrink-0 snap-center 
+                                bg-[#FAF9F6] rounded-[2.5rem] p-8 shadow-[10px_10px_20px_#d1cfcc,-10px_-10px_20px_#ffffff] border border-white/50
+                                md:bg-transparent md:p-0 md:shadow-none md:border-none md:flex-row md:items-center md:gap-20
+                                ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}
+                            `}
                         >
+                            {/* Neumorphic Decorative Number for Mobile (replacing the image badge) */}
+                            <div className="md:hidden absolute top-6 right-8 text-6xl font-black text-gray-200/50 select-none pointer-events-none">
+                                0{index + 1}
+                            </div>
+
                             {/* Content Box */}
-                            <div className="flex-1 w-full">
+                            <div className="flex-1 w-full relative z-10">
                                 <div className="flex items-center gap-4 mb-6">
-                                    <div className="p-4 bg-white rounded-2xl shadow-xl shadow-gray-200/50">
+                                    <div className="p-4 bg-[#FAF9F6] rounded-2xl shadow-[inset_5px_5px_10px_#d1cfcc,inset_-5px_-5px_10px_#ffffff] text-orange-500">
                                         {service.icon}
                                     </div>
                                     <div className="h-0.5 flex-1 bg-gradient-to-r from-gray-200 to-transparent"></div>
                                 </div>
 
-                                <h2 className="text-3xl md:text-4xl font-black text-black mb-6 tracking-tight">
+                                <h2 className="text-2xl md:text-4xl font-black text-black mb-4 md:mb-6 tracking-tight leading-tight">
                                     {service.title}
                                 </h2>
 
-                                <p className="text-gray-600 text-lg mb-8 leading-relaxed font-medium">
+                                <p className="text-gray-600 text-sm md:text-lg mb-6 md:mb-8 leading-relaxed font-medium">
                                     {service.description}
                                 </p>
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                                     {service.features.map((feature, idx) => (
                                         <div key={idx} className="flex items-start gap-3 group">
-                                            <CheckCircle2 className="size-5 text-orange-500 mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
+                                            <CheckCircle2 className="size-5 text-orange-500 mt-0.5 shrink-0" />
                                             <span className="text-sm font-bold text-gray-700 leading-tight">{feature}</span>
                                         </div>
                                     ))}
                                 </div>
 
-                                <div className="mt-10">
+                                <div className="mt-8 md:mt-10">
                                     <button className="flex items-center gap-2 text-sm font-black text-orange-500 uppercase tracking-widest hover:gap-4 transition-all group">
                                         Solicitar información técnica
                                         <ArrowRight className="size-4" />
@@ -141,18 +152,18 @@ const DetailedServices = () => {
                                 </div>
                             </div>
 
-                            {/* Image Box */}
-                            <div className="flex-1 w-full">
+                            {/* Image Box - HIDDEN on Mobile */}
+                            <div className="hidden md:block flex-1 w-full">
                                 <div className="relative aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl group border-4 border-white">
-                                    <Image 
-                                        src={service.image} 
+                                    <Image
+                                        src={service.image}
                                         alt={service.title}
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
                                     {/* Overlay Gradient */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                                    
+
                                     {/* Floating badge */}
                                     <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-md px-6 py-4 rounded-2xl border border-white shadow-lg">
                                         <div className="text-orange-500 font-black text-xl leading-none">0{index + 1}</div>
