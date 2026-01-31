@@ -1,6 +1,8 @@
 'use server';
 
 import { Resend } from 'resend';
+import fs from 'fs';
+import path from 'path';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -17,11 +19,22 @@ export async function sendDiagnosticEmail(formData: FormData) {
     const currentSystems = formData.get('current-systems') as string;
 
     try {
+        const logoPath = path.join(process.cwd(), 'public', 'images', 'logo-siprac.png');
+        const logoBuffer = fs.readFileSync(logoPath);
+        const logoBase64 = logoBuffer.toString('base64');
+
         const { data, error } = await resend.emails.send({
             from: 'SIPRAC Diagnóstico <onboarding@resend.dev>',
-            to: ['santivalencia2311@gmail.com'],
+            to: ['siprac.director@gmail.com'],
             replyTo: email,
-            subject: `Nuevo Diagnóstico Preliminar: ${company}`,
+            subject: `Nuevo lead recibido en siprac.com: ${company}`,
+            attachments: [
+                {
+                    filename: 'logo-siprac.png',
+                    content: logoBase64,
+                    contentId: 'logo-siprac'
+                }
+            ],
             html: `
 <!DOCTYPE html>
 <html>
@@ -41,8 +54,9 @@ export async function sendDiagnosticEmail(formData: FormData) {
                     <!-- Header -->
                     <tr>
                         <td align="center" style="padding: 40px 40px 20px 40px; background-color: #ffffff;">
-                            <h1 style="margin: 0; color: #f97316; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">Nuevo Lead Cualificado</h1>
-                            <p style="margin: 10px 0 0 0; color: #9ca3af; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">Diagnóstico Preliminar</p>
+                            <img src="cid:logo-siprac" alt="SIPRAC Logo" style="width: 120px; height: auto; margin-bottom: 24px;" />
+                            <h1 style="margin: 0; color: #f97316; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">Nuevo leed recibido</h1>
+                            <p style="margin: 10px 0 0 0; color: #9ca3af; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">siprac.com</p>
                         </td>
                     </tr>
 
