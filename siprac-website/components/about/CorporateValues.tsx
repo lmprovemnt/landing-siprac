@@ -34,7 +34,7 @@ const CorporateValues = () => {
                     <div className="w-16 h-1 bg-orange-500 mx-auto mt-6"></div>
                 </div>
 
-                <MobileCarousel className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto md:pb-0 scrollbar-hide">
+                <MobileCarousel className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto md:mx-auto justify-center md:pb-0 scrollbar-hide">
                     {values.map((value, index) => (
                         <div
                             key={index}
