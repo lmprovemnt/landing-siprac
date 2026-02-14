@@ -62,9 +62,8 @@ const AnimatedCounter = ({ target, duration = 1500 }: { target: string, duration
 
 const Hero = () => {
     const stats = [
-        { number: '100+', label: 'Proyectos Completados' },
         { number: '50+', label: 'Clientes Satisfechos' },
-        { number: '15+', label: 'Años de Experiencia' },
+        { number: '10+', label: 'Años de Experiencia' },
     ];
 
     return (

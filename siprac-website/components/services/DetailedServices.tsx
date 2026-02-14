@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { CheckCircle2, Shield, Leaf, Award, Search, FileText, Settings, ArrowRight } from 'lucide-react'
+import { CheckCircle2, Shield, Leaf, Award, Search, FileText, Settings, ArrowRight, Car } from 'lucide-react'
 import MobileCarousel from '../ui/MobileCarousel'
 
 const serviceDetails = [
@@ -78,7 +78,7 @@ const serviceDetails = [
             'Gestión documental especializada',
             'Mantenimiento continuo del sistema'
         ],
-        image: '/images/services/ruc.png',
+        image: '/images/services/ruc-updated.png',
         color: 'red'
     },
     {
@@ -93,8 +93,23 @@ const serviceDetails = [
             'Optimización de recursos administrativos',
             'Visión holística del riesgo'
         ],
-        image: '/images/services/hseq.png',
+        image: '/images/services/hseq-updated.png',
         color: 'amber'
+    },
+    {
+        id: 'pesv',
+        title: 'Plan Estratégico de Seguridad Vial (PESV)',
+        icon: <Car className="size-8 text-indigo-500" />,
+        description: 'Desarrollamos e implementamos su Plan Estratégico de Seguridad Vial bajo estándares normativos, enfocándonos en la prevención de riesgos viales y la protección de la vida.',
+        features: [
+            'Diseño según el nivel de cumplimiento y tamaño de organización',
+            'Gestión de los 5 pilares de seguridad vial',
+            'Articulación con el SG-SST',
+            'Auditorías de seguimiento y verificación de indicadores',
+            'Atención a víctimas e infraestructura segura'
+        ],
+        image: '/images/services/pesv.png',
+        color: 'indigo'
     }
 ]
 

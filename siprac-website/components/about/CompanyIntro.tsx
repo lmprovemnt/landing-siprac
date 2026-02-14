@@ -2,7 +2,7 @@ const CompanyIntro = () => {
     return (
         <section className="py-24 bg-white">
             <div className="container mx-auto px-4">
-                <div className="flex flex-col lg:flex-row gap-16 items-center">
+                <div className="flex flex-col lg:flex-row gap-16 items-center align-center justify-center">
                     <div className="lg:w-1/2">
                         <h2 className="text-4xl font-extrabold text-[#e67e22] mb-4">Nuestra Empresa</h2>
                         <div className="w-20 h-1 bg-orange-500 mb-8"></div>
@@ -24,21 +24,7 @@ const CompanyIntro = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="lg:w-1/2 w-full">
-                        <div className="aspect-[4/3] relative rounded-3xl overflow-hidden shadow-2xl group">
-                            <img
-                                src="/images/about/nuestra-empresa.jpg"
-                                alt="Siprac Oficina"
-                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                            <div className="absolute bottom-8 left-8">
-                                <div className="bg-orange-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg">
-                                    Nuestras Instalaciones
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </section>

@@ -60,7 +60,7 @@ const TeamSnippet = () => {
                                     <Star className="size-6 text-orange-500 fill-orange-500" />
                                 </div>
                                 <p className="text-gray-500 leading-relaxed font-medium">
-                                    La acompaña una Analista especializada en Seguridad y Salud en el Trabajo (SST), con experiencia en la implementación y seguimiento de sistemas de gestión. Juntas, impulsan soluciones efectivas adaptadas a las necesidades de cada cliente.
+                                    Contamos con profesionales especialistas dedicados a fortalecer su organización a través de sistemas de gestión integrados. Desde el diseño hasta el seguimiento detallado, nos aseguramos de que cada proceso cumpla con la normativa vigente, adaptándonos siempre a las necesidades específicas de su negocio.
                                 </p>
                             </div>
 
