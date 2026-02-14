@@ -39,7 +39,7 @@ const services = [
         icon: <Search className="size-8" />,
         title: 'Auditorías',
         description: 'Auditorías internas y externas para verificar cumplimiento.',
-        items: ['Auditorías internas', 'Pre-auditorías', 'Seguimiento'],
+        items: ['Auditoria plan estratégico de seguridad vial - PESV', 'Auditoria registro único de contratistas - RUC', 'Auditoria seguridad y salud en el trabajo Resolución 0312 del 2019 y Decreto 1072 del 2015.', 'Auditoria de Calidad', 'Auditoria gestión ambiental'],
         color: 'from-purple-400 to-purple-600'
     },
     {

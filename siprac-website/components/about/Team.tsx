@@ -3,20 +3,20 @@ import { Mail } from "lucide-react";
 
 const teamMembers = [
     {
-        name: "NINI JOHANA GUTIÉRREZ CÁRDENAS",
-        role: "Gerente",
-        specialty: "Profesional en Seguridad y Salud en el Trabajo",
+        name: "Nini Johana Gutierrez Cardenas",
+        role: "Gerente operativa",
+        specialty: "PMag. Gerencia en Seguridad y Salud en el Trabajo",
         description: "Lidera la firma con una sólida trayectoria en consultoría empresarial y enfoque estratégico. Amplia experiencia en implementación de sistemas de gestión.",
-        image: "/images/about/team-member-1.png",
-        email: "gerencia@siprac.com"
+        image: "/images/about/team_member_1.png",
+        email: "Siprac.director@gmail.com"
     },
     {
-        name: "MICHEL DAYANA ORTEGA",
-        role: "Analista en SST",
-        specialty: "Tecnóloga en Seguridad y Salud en el Trabajo",
-        description: "Especializada en Seguridad y Salud en el Trabajo (SST), con experiencia en la implementación y seguimiento de sistemas de gestión.",
-        image: "/images/about/team-member-2.png",
-        email: "analista-sst@siprac.com"
+        name: "Douglas Largo Pineda",
+        role: "Gerente Financiero",
+        specialty: "Mag. Gerencia en seguridad y salud en el trabajo",
+        description: "Especializado en Seguridad y Salud en el Trabajo (SST), con experiencia en la implementación y seguimiento de sistemas de gestión.",
+        image: "/images/about/team_member_2.png",
+        email: "Siprac.dou001@gmail.com"
     }
 ]
 

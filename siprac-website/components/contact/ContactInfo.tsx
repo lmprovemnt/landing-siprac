@@ -7,9 +7,9 @@ export default function ContactInfo() {
             title: "Teléfonos",
             icon: "fas fa-phone",
             items: [
+                "311 628 3087",
                 "311 630 0848",
-                "315 437 6818",
-                "315 865 3629"
+                "315 865 3629",
             ],
             footer: "Llamadas y WhatsApp disponibles"
         },
@@ -17,8 +17,8 @@ export default function ContactInfo() {
             title: "Correos Electrónicos",
             icon: "fas fa-envelope",
             items: [
+                "siprac.director@gmail.com",
                 "sipracsiprac@gmail.com",
-                "asesordegestion.sst@gmail.com",
                 "siprac.dou001@gmail.com"
             ],
             footer: "Respondemos en menos de 24 horas"
@@ -36,11 +36,10 @@ export default function ContactInfo() {
             title: "Horario de Atención",
             icon: "fas fa-clock",
             details: [
-                { label: "Lunes - Viernes", value: "8:00 AM - 6:00 PM" },
-                { label: "Sábados", value: "9:00 AM - 1:00 PM" },
-                { label: "Emergencias", value: "24/7" }
-            ],
-            footer: "Servicio de urgencias disponible"
+                { label: "Lunes - Viernes", value: "8:00 AM - 12:00 PM y 2:00 PM - 5:00 PM" },
+
+            ]
+
         }
     ];
 
