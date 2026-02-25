@@ -39,7 +39,9 @@ const services = [
         icon: <Search className="size-8" />,
         title: 'Auditorías',
         description: 'Auditorías internas y externas para verificar cumplimiento.',
-        items: ['Auditoria plan estratégico de seguridad vial - PESV', 'Auditoria registro único de contratistas - RUC', 'Auditoria seguridad y salud en el trabajo Resolución 0312 del 2019 y Decreto 1072 del 2015.', 'Auditoria de Calidad', 'Auditoria gestión ambiental'],
+        items: ['Auditoria plan estratégico de seguridad vial - PESV', 'Auditoria registro único de contratistas - RUC',
+            'Auditoria seguridad y salud en el trabajo Resolución 0312 del 2019 y Decreto 1072 del 2015.', 'Auditoria de Calidad',
+            'Auditoria gestión ambiental'],
         color: 'from-purple-400 to-purple-600'
     },
     {
@@ -66,43 +68,50 @@ const services = [
 ]
 
 // Reusable Neumorphic Card Component
-const NeumorphicCard = ({ service, index }: { service: any, index: number }) => (
-    <div className="min-w-[280px] md:min-w-[350px] h-auto md:h-[450px] bg-[#FAF9F6] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 relative overflow-hidden group/card shadow-[10px_10px_20px_#d1d5db,-10px_-10px_20px_#ffffff] transition-transform duration-300 hover:-translate-y-2 flex flex-col">
+const NeumorphicCard = ({ service, index }: { service: any, index: number }) => {
+    const isAuditoria = service.title.toLowerCase().includes('auditoría');
 
-        {/* Header: Icon & Arrow */}
-        <div className="flex justify-between items-start mb-4 md:mb-8">
-            <div className={`p-3 md:p-4 rounded-xl md:rounded-2xl text-orange-500 shadow-[inset_4px_4px_8px_#d1cfcc,inset_-4px_-4px_8px_#ffffff] bg-[#FAF9F6] group-hover/card:text-orange-600 transition-colors duration-500`}>
-                {React.cloneElement(service.icon as React.ReactElement<{ className?: string }>, { className: "size-6 md:size-8" })}
-            </div>
-            <div className="text-gray-300 group-hover/card:text-orange-500 transition-colors">
-                <ArrowUpRight className="size-5 md:size-6" />
-            </div>
-        </div>
+    return (
 
-        {/* Title */}
-        <h3 className="text-xl md:text-2xl font-black mb-3 md:mb-4 text-black leading-tight tracking-tight uppercase">
-            {service.title}
-        </h3>
+        <div className="min-w-[230px] md:min-w-[260px] h-[400px] md:h-[450px] bg-[#FAF9F6] rounded-[2rem] md:rounded-[2.5rem] p-5 md:p-6 relative overflow-hidden group/card shadow-[10px_10px_20px_#d1d5db,-10px_-10px_20px_#ffffff] transition-transform duration-300 hover:-translate-y-2 flex flex-col">
 
-        {/* Description */}
-        <p className="text-xs md:text-sm text-gray-500 mb-6 md:mb-8 leading-relaxed font-bold opacity-80">
-            {service.description}
-        </p>
-
-        {/* List Items */}
-        <div className="space-y-2 md:space-y-3 mt-auto">
-            {service.items.map((item: string, idx: number) => (
-                <div key={idx} className="flex items-center gap-2 md:gap-3">
-                    <div className="size-1.5 md:size-2 rounded-full bg-orange-500 shrink-0 shadow-[2px_2px_4px_#d1cfcc]"></div>
-                    <span className="text-[10px] md:text-xs font-bold text-gray-600 uppercase tracking-wide">{item}</span>
+            {/* Header: Icon & Arrow */}
+            <div className="flex justify-between items-start mb-3 md:mb-4">
+                <div className={`p-2 md:p-3 rounded-xl md:rounded-2xl text-orange-500 shadow-[inset_4px_4px_8px_#d1cfcc,inset_-4px_-4px_8px_#ffffff] bg-[#FAF9F6] group-hover/card:text-orange-600 transition-colors duration-500`}>
+                    {React.cloneElement(service.icon as React.ReactElement<{ className?: string }>, { className: "size-5 md:size-6" })}
                 </div>
-            ))}
-        </div>
+                <div className="text-gray-300 group-hover/card:text-orange-500 transition-colors">
+                    <ArrowUpRight className="size-4 md:size-5" />
+                </div>
+            </div>
 
-        {/* Decorative corner accent */}
-        <div className={`absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-br ${service.color} opacity-10 rounded-tl-[100px] pointer-events-none`}></div>
-    </div>
-);
+            {/* Title */}
+            <h3 className={`font-black mb-2 md:mb-3 text-black leading-tight tracking-tight uppercase ${isAuditoria ? 'text-base md:text-lg' : 'text-lg md:text-xl'}`}>
+                {service.title}
+            </h3>
+
+            {/* Description */}
+            <p className={`text-gray-500 mb-4 md:mb-5 leading-relaxed font-bold opacity-80 ${isAuditoria ? 'text-[9px] md:text-[10px]' : 'text-[10px] md:text-xs'}`}>
+                {service.description}
+            </p>
+
+            {/* List Items */}
+            <div className="space-y-1.5 md:space-y-2 mt-auto">
+                {service.items.map((item: string, idx: number) => (
+                    <div key={idx} className="flex items-start gap-2 md:gap-3">
+                        <div className="size-1 md:size-1.5 rounded-full bg-orange-500 shrink-0 shadow-[2px_2px_4px_#d1cfcc] mt-1"></div>
+                        <span className={`font-bold text-gray-600 uppercase tracking-wide leading-tight ${isAuditoria ? 'text-[8px] md:text-[9px]' : 'text-[9px] md:text-[10px]'}`}>
+                            {item}
+                        </span>
+                    </div>
+                ))}
+            </div>
+
+            {/* Decorative corner accent */}
+            <div className={`absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-br ${service.color} opacity-10 rounded-tl-[100px] pointer-events-none`}></div>
+        </div>
+    );
+};
 
 const Services = () => {
     const [isMobile, setIsMobile] = useState(false);
