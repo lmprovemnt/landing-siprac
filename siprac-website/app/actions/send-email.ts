@@ -19,7 +19,7 @@ export async function sendDiagnosticEmail(formData: FormData) {
     try {
         const { data, error } = await resend.emails.send({
             from: 'SIPRAC Diagnóstico <onboarding@resend.dev>',
-            to: ['santivalencia2311@gmail.com'],
+            to: ['siprac.director@gmail.com'],
             replyTo: email,
             subject: `Nuevo Diagnóstico Preliminar: ${company}`,
             html: `
